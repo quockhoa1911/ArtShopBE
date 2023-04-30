@@ -18,6 +18,7 @@ class Products(BaseModel):
                                    null=True, blank=True)
     author = models.ForeignKey(to=Author, on_delete=models.CASCADE, related_name="product", default=None, null=True,
                                blank=True)
+    sold = models.BooleanField(default=False, null=True, blank=True)
 
     class Meta:
         db_table = "products"
