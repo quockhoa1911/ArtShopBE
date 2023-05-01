@@ -50,7 +50,8 @@ INSTALLED_APPS = [
     'corsheaders',
 
     'api_auth',
-    'api_product'
+    'api_product',
+    'api_payment'
 
 
 
