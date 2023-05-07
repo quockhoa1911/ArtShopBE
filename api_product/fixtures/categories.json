@@ -1,0 +1,56 @@
+[
+  {
+    "model": "api_product.Category",
+    "fields": {
+      "name": "Tranh chân dung"
+    }
+  },
+  {
+    "model": "api_product.Category",
+    "fields": {
+      "name": "Tranh phong cảnh"
+    }
+  },
+  {
+    "model": "api_product.Category",
+    "fields": {
+      "name": "Tranh tĩnh vật"
+    }
+  },
+  {
+    "model": "api_product.Category",
+    "fields": {
+      "name": "Tranh dân gian"
+    }
+  },
+  {
+    "model": "api_product.Category",
+    "fields": {
+      "name": "Tranh sơn thủy"
+    }
+  },
+  {
+    "model": "api_product.Category",
+    "fields": {
+      "name": "Tranh chân dung"
+    }
+  },
+  {
+    "model": "api_product.Category",
+    "fields": {
+      "name": "Tranh tôn giáo"
+    }
+  },
+  {
+    "model": "api_product.Category",
+    "fields": {
+      "name": "Tranh hoành tráng"
+    }
+  },
+  {
+    "model": "api_product.Category",
+    "fields": {
+      "name": "Tranh cổ động"
+    }
+  }
+]
