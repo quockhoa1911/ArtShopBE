@@ -22,15 +22,16 @@ class ProductResponseSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Products
-        fields = ["id", "name", "category", "author", "sold", "images", "description", "price", "start_auction", "end_auction",
+        fields = ["id", "name", "category", "author", "slug", "sold", "images", "description", "price", "start_auction", "end_auction",
                   "auction_price"]
 
 
 class ProductRequestSerializer(serializers.Serializer):
     name = serializers.CharField()
     sold = serializers.BooleanField()
-    discount = serializers.IntegerField()
     description = serializers.CharField()
-    price = serializers.CharField
+    price = serializers.CharField()
     category = serializers.UUIDField()
     author = serializers.UUIDField()
+    start_auction = serializers.CharField()
+    end_auction = serializers.CharField()

@@ -19,7 +19,6 @@ class UserRegisterSerializers(serializers.ModelSerializer):
         fields = ['email', 'password', 'phone_number']
 
     def validate_email(self, value):
-
         user = User.objects.filter(email__iexact=value)
         if user.exists():
             raise serializers.ValidationError("email must be unique")
@@ -32,9 +31,9 @@ class UserRegisterSerializers(serializers.ModelSerializer):
 
 
 class UserResponseSerializers(serializers.ModelSerializer):
-    role = RoleResponseSerializer(many=True, read_only=True)
+    role = RoleResponseSerializer(many=False, read_only=True)
     password = serializers.HiddenField(default=None)
 
     class Meta:
-        models = User
-        fields = ['__all__']
+        model = User
+        fields = ["id", "email", "phone_number", "role", "password"]

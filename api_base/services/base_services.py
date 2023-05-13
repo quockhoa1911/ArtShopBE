@@ -9,5 +9,4 @@ class BaseService:
         fs = FileSystemStorage()
         current_date = datetime.now()
         file_name = fs.save(name=current_date.strftime("%m_%d_%Y,%H_%M_%S_") + file.name, content=file)
-        print("aa")
         return fs.url(file_name)

@@ -6,11 +6,11 @@ from api_product.serializers import ProductResponseSerializer
 class ProductService:
 
     def create_or_update_product(self, product: dict, id=None):
-        product['categories'] = Category.objects.get(pk=product['categories'])
+        product['category'] = Category.objects.get(pk=product['category'])
         product['author'] = Author.objects.get(pk=product['author'])
         product['slug'] = product.get("name").lower().replace(" ", "_")
         obj, created = Products.objects.update_or_create(
-            id=id if id is not None else "",
+            id=id if id is not None else None,
             defaults={**product}
         )
         return obj.id
@@ -26,8 +26,7 @@ class ProductService:
                     queries_product = queries_product.first()
                     many = False
                 serializer = ProductResponseSerializer(instance=queries_product, many=many)
-                print(serializer.data)
-                product.append([serializer.data] if many == False else serializer.data)
+                product.append([serializer.data] if many is False else serializer.data)
 
         return product
 

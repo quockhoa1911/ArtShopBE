@@ -9,19 +9,18 @@ from rest_framework.decorators import action
 from api_base.services import BaseService
 
 
-
 # Create your views here.
 
 class ProductViewSet(BaseAdminModelView):
     scopes = {
-        "list": "anonymous",
+        "list": "anonymous,user",
+        "retrieve": "anonymous,user"
     }
     queryset = Products.objects.all()
     serializer_class = ProductResponseSerializer
 
     def list(self, request, *args, **kwargs):
         data = ProductService().list(request)
-        print(data)
         return Response(data=data, status=status.HTTP_200_OK)
 
     def create(self, request, *args, **kwargs):

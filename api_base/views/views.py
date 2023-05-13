@@ -1,6 +1,7 @@
 from rest_framework.views import APIView
 from rest_framework.viewsets import ModelViewSet
 from api_base.permissions import AdminPermission, UserPermission
+from rest_framework.permissions import IsAuthenticated
 
 
 # Create your views here.

@@ -5,7 +5,8 @@ from api_product.models import Category
 
 class CategoriesViewSet(BaseAdminModelView):
     scopes = {
-        "list": "anonymous"
+        "list": "anonymous,user",
+        "retrieve": "anonymous,user"
     }
     serializer_class = CategoryResponseSerializer
     queryset = Category.objects.all()

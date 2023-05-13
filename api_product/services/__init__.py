@@ -1,1 +1,2 @@
 from .products_services import ProductService
+from .auctionproduct_services import AuctionProductService

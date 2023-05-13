@@ -29,11 +29,17 @@ class ImageProduct(BaseModel):
                                 null=True, blank=True)
     image = models.CharField(max_length=256, null=True, blank=True)
 
+    class Meta:
+        db_table = "image_products"
+
 
 class AuctionProduct(BaseModel):
     product = models.ForeignKey(to=Products, on_delete=models.CASCADE, related_name="auctionproduct", default=None,
                                 null=True, blank=True)
     user = models.ForeignKey(to=User, on_delete=models.CASCADE, related_name="auctionproduct", default=None, null=True,
                              blank=True)
-    is_success = models.BooleanField(default=False, null=True, blank=True)
-    price_auction = models.CharField(max_length=256, null=True, blank=True, default=None)
+    is_success = models.BooleanField(default=True, null=True, blank=True)
+    auction_price = models.CharField(max_length=256, null=True, blank=True, default=None)
+
+    class Meta:
+        db_table = "auction_products"
