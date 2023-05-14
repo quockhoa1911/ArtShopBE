@@ -29,7 +29,7 @@ class ProductResponseSerializer(serializers.ModelSerializer):
     def to_representation(self, instance):
         instance = super().to_representation(instance)
         id_products = instance.get('id')
-        instance['auction_participant'] = len(AuctionProduct.objects.filter(product=id_products))
+        instance['auction_participant'] = len(AuctionProduct.objects.filter(product=id_products).values("user").distinct())
         return instance
 
 
