@@ -13,9 +13,8 @@ class AdminPermission(BasePermission):
         if not request.user.is_anonymous and request.user.role and request.user.role.name == ADMIN: return True
 
         if scope_of_action:
-            for role in [ADMIN, USER, ANONYMOUS]:
-                if role in scope_of_action:
-                    return True
+            if ANONYMOUS in scope_of_action: return True
+            if not request.user.is_anonymous and request.user.role and request.user.role.name in scope_of_action: return True
         return False
 
 
@@ -27,7 +26,6 @@ class UserPermission(BasePermission):
         if not request.user.is_anonymous and request.user.role and request.user.role.name == USER: return True
 
         if scope_of_action:
-            for role in [ADMIN, USER, ANONYMOUS]:
-                if role in scope_of_action:
-                    return True
+            if ANONYMOUS in scope_of_action: return True
+            if not request.user.is_anonymous and request.user.role and request.user.role.name in scope_of_action: return True
         return False

@@ -3,8 +3,7 @@ from api_product.models import Products, ImageProduct
 from api_product.serializers import CategoryResponseSerializer
 from api_auth.serializers import AuthorResponseSerializer
 from api_product.models import AuctionProduct
-
-
+from django.db.models import Q
 # class ImageProductSerializer(serializers.ModelSerializer):
 #     class Meta:
 #         model = ImageProduct
@@ -42,3 +41,13 @@ class ProductRequestSerializer(serializers.Serializer):
     author = serializers.UUIDField()
     start_auction = serializers.CharField()
     end_auction = serializers.CharField()
+
+    def validate_name(self, attrs):
+        id = self.context.get("id", None)
+        if id is not None:
+            product = Products.objects.filter(Q(name__iexact=attrs) & ~Q(pk=id))
+        else:
+            product = Products.objects.filter(name__iexact=attrs)
+        if product.exists():
+            raise serializers.ValidationError("name must be unique")
+        return attrs
