@@ -14,6 +14,7 @@ from pathlib import Path
 import os
 from dotenv import load_dotenv
 from datetime import timedelta
+import dj_database_url
 
 load_dotenv()
 
@@ -92,16 +93,21 @@ WSGI_APPLICATION = 'core.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#         'NAME': os.getenv("db_name"),
+#         'USER': os.getenv("username"),
+#         'PASSWORD': os.getenv("password"),
+#         'HOST': os.getenv("db_host"),
+#         'PORT': os.getenv("db_port"),
+#     }
+# }
+
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': os.getenv("db_name"),
-        'USER': os.getenv("username"),
-        'PASSWORD': os.getenv("password"),
-        'HOST': os.getenv("db_host"),
-        'PORT': os.getenv("db_port"),
-    }
+    "default": dj_database_url.parse(os.getenv("DATABASE_URL"))
 }
+
 
 SIMPLE_JWT = {
     'ACCESS_TOKEN_LIFETIME': timedelta(days=9),
