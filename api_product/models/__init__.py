@@ -1,1 +1,2 @@
-from .models import Category, Products
+from .category import Category
+from .product import Products, ImageProduct, AuctionProduct
