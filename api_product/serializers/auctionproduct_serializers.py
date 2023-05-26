@@ -10,9 +10,9 @@ class AuctionProductResponseSerializers(serializers.ModelSerializer):
 
     class Meta:
         model = AuctionProduct
-        fields = ["id", "product", "user", "is_success", "auction_price"]
+        fields = ["id", "product", "user", "is_success", "auction_price", "create_at"]
 
 
 class AuctionProductRequestSerializers(serializers.Serializer):
-    product = serializers.UUIDField()
+    product_id = serializers.UUIDField()
     auction_price = serializers.CharField()

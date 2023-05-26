@@ -28,9 +28,9 @@ class AuctionProductViewSet(BaseAdminModelView):
 
         return Response(data=message, status=status.HTTP_201_CREATED if is_valid else status.HTTP_400_BAD_REQUEST)
 
-    @action(methods=["GET"], detail=True, name="get_list_auction_of_user")
-    def get_list_auction_of_user(self, request, pk, *args, **kwargs):
-        queries = AuctionProduct.objects.filter(user=pk).values("product").annotate(price_max=Max('auction_price')).order_by()
+    @action(methods=["GET"], detail=False, name="get_list_auction_of_user")
+    def get_list_auction_of_user(self, request, *args, **kwargs):
+        queries = AuctionProduct.objects.filter(user=request.user).values("product").annotate(price_max=Max('auction_price')).order_by()
         list_product = []
         for query in queries:
             serializer = ProductResponseSerializer(instance=Products.objects.get(pk=query.get('product').hex), many=False)
@@ -46,5 +46,5 @@ class AuctionProductViewSet(BaseAdminModelView):
                 queries = queries.first()
                 many = False
             serializer = AuctionProductResponseSerializers(instance=queries, many=many)
-            return Response(data=serializer.data, status=status.HTTP_200_OK)
+            return Response(data=serializer.data if many else [serializer.data], status=status.HTTP_200_OK)
         return Response(data="Products hasn't auction", status=status.HTTP_400_BAD_REQUEST)

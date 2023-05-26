@@ -2,6 +2,8 @@ from rest_framework import serializers
 from api_auth.models import User
 from api_auth.serializers import RoleResponseSerializer
 from django.contrib.auth.hashers import make_password
+from api_product.models import AuctionProduct
+from django.db.models import Sum
 
 
 class UserLoginSerialiers(serializers.Serializer):
@@ -36,4 +38,10 @@ class UserResponseSerializers(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = ["id", "email", "phone_number", "role", "password"]
+        fields = ["id", "email", "phone_number", "role", "password", "is_active"]
+
+    def to_representation(self, instance):
+        instance = super().to_representation(instance)
+        queries = AuctionProduct.objects.filter(user=instance.get("id"))
+        instance["total_auction_price"] = queries.aggregate(total=Sum('auction_price')).get("total")
+        return instance

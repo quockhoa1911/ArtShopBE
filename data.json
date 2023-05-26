@@ -1,0 +1,1202 @@
+[
+{
+  "model": "auth.permission",
+  "pk": 1,
+  "fields": {
+    "name": "Can add log entry",
+    "content_type": 1,
+    "codename": "add_logentry"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 2,
+  "fields": {
+    "name": "Can change log entry",
+    "content_type": 1,
+    "codename": "change_logentry"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 3,
+  "fields": {
+    "name": "Can delete log entry",
+    "content_type": 1,
+    "codename": "delete_logentry"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 4,
+  "fields": {
+    "name": "Can view log entry",
+    "content_type": 1,
+    "codename": "view_logentry"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 5,
+  "fields": {
+    "name": "Can add permission",
+    "content_type": 2,
+    "codename": "add_permission"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 6,
+  "fields": {
+    "name": "Can change permission",
+    "content_type": 2,
+    "codename": "change_permission"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 7,
+  "fields": {
+    "name": "Can delete permission",
+    "content_type": 2,
+    "codename": "delete_permission"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 8,
+  "fields": {
+    "name": "Can view permission",
+    "content_type": 2,
+    "codename": "view_permission"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 9,
+  "fields": {
+    "name": "Can add group",
+    "content_type": 3,
+    "codename": "add_group"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 10,
+  "fields": {
+    "name": "Can change group",
+    "content_type": 3,
+    "codename": "change_group"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 11,
+  "fields": {
+    "name": "Can delete group",
+    "content_type": 3,
+    "codename": "delete_group"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 12,
+  "fields": {
+    "name": "Can view group",
+    "content_type": 3,
+    "codename": "view_group"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 13,
+  "fields": {
+    "name": "Can add user",
+    "content_type": 4,
+    "codename": "add_user"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 14,
+  "fields": {
+    "name": "Can change user",
+    "content_type": 4,
+    "codename": "change_user"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 15,
+  "fields": {
+    "name": "Can delete user",
+    "content_type": 4,
+    "codename": "delete_user"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 16,
+  "fields": {
+    "name": "Can view user",
+    "content_type": 4,
+    "codename": "view_user"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 17,
+  "fields": {
+    "name": "Can add content type",
+    "content_type": 5,
+    "codename": "add_contenttype"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 18,
+  "fields": {
+    "name": "Can change content type",
+    "content_type": 5,
+    "codename": "change_contenttype"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 19,
+  "fields": {
+    "name": "Can delete content type",
+    "content_type": 5,
+    "codename": "delete_contenttype"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 20,
+  "fields": {
+    "name": "Can view content type",
+    "content_type": 5,
+    "codename": "view_contenttype"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 21,
+  "fields": {
+    "name": "Can add session",
+    "content_type": 6,
+    "codename": "add_session"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 22,
+  "fields": {
+    "name": "Can change session",
+    "content_type": 6,
+    "codename": "change_session"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 23,
+  "fields": {
+    "name": "Can delete session",
+    "content_type": 6,
+    "codename": "delete_session"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 24,
+  "fields": {
+    "name": "Can view session",
+    "content_type": 6,
+    "codename": "view_session"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 25,
+  "fields": {
+    "name": "Can add author",
+    "content_type": 7,
+    "codename": "add_author"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 26,
+  "fields": {
+    "name": "Can change author",
+    "content_type": 7,
+    "codename": "change_author"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 27,
+  "fields": {
+    "name": "Can delete author",
+    "content_type": 7,
+    "codename": "delete_author"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 28,
+  "fields": {
+    "name": "Can view author",
+    "content_type": 7,
+    "codename": "view_author"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 29,
+  "fields": {
+    "name": "Can add role",
+    "content_type": 8,
+    "codename": "add_role"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 30,
+  "fields": {
+    "name": "Can change role",
+    "content_type": 8,
+    "codename": "change_role"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 31,
+  "fields": {
+    "name": "Can delete role",
+    "content_type": 8,
+    "codename": "delete_role"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 32,
+  "fields": {
+    "name": "Can view role",
+    "content_type": 8,
+    "codename": "view_role"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 33,
+  "fields": {
+    "name": "Can add user",
+    "content_type": 9,
+    "codename": "add_user"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 34,
+  "fields": {
+    "name": "Can change user",
+    "content_type": 9,
+    "codename": "change_user"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 35,
+  "fields": {
+    "name": "Can delete user",
+    "content_type": 9,
+    "codename": "delete_user"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 36,
+  "fields": {
+    "name": "Can view user",
+    "content_type": 9,
+    "codename": "view_user"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 37,
+  "fields": {
+    "name": "Can add products",
+    "content_type": 10,
+    "codename": "add_products"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 38,
+  "fields": {
+    "name": "Can change products",
+    "content_type": 10,
+    "codename": "change_products"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 39,
+  "fields": {
+    "name": "Can delete products",
+    "content_type": 10,
+    "codename": "delete_products"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 40,
+  "fields": {
+    "name": "Can view products",
+    "content_type": 10,
+    "codename": "view_products"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 41,
+  "fields": {
+    "name": "Can add category",
+    "content_type": 11,
+    "codename": "add_category"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 42,
+  "fields": {
+    "name": "Can change category",
+    "content_type": 11,
+    "codename": "change_category"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 43,
+  "fields": {
+    "name": "Can delete category",
+    "content_type": 11,
+    "codename": "delete_category"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 44,
+  "fields": {
+    "name": "Can view category",
+    "content_type": 11,
+    "codename": "view_category"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 45,
+  "fields": {
+    "name": "Can add payments",
+    "content_type": 12,
+    "codename": "add_payments"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 46,
+  "fields": {
+    "name": "Can change payments",
+    "content_type": 12,
+    "codename": "change_payments"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 47,
+  "fields": {
+    "name": "Can delete payments",
+    "content_type": 12,
+    "codename": "delete_payments"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 48,
+  "fields": {
+    "name": "Can view payments",
+    "content_type": 12,
+    "codename": "view_payments"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 49,
+  "fields": {
+    "name": "Can add payment details",
+    "content_type": 13,
+    "codename": "add_paymentdetails"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 50,
+  "fields": {
+    "name": "Can change payment details",
+    "content_type": 13,
+    "codename": "change_paymentdetails"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 51,
+  "fields": {
+    "name": "Can delete payment details",
+    "content_type": 13,
+    "codename": "delete_paymentdetails"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 52,
+  "fields": {
+    "name": "Can view payment details",
+    "content_type": 13,
+    "codename": "view_paymentdetails"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 53,
+  "fields": {
+    "name": "Can add image product",
+    "content_type": 14,
+    "codename": "add_imageproduct"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 54,
+  "fields": {
+    "name": "Can change image product",
+    "content_type": 14,
+    "codename": "change_imageproduct"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 55,
+  "fields": {
+    "name": "Can delete image product",
+    "content_type": 14,
+    "codename": "delete_imageproduct"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 56,
+  "fields": {
+    "name": "Can view image product",
+    "content_type": 14,
+    "codename": "view_imageproduct"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 57,
+  "fields": {
+    "name": "Can add auction product",
+    "content_type": 15,
+    "codename": "add_auctionproduct"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 58,
+  "fields": {
+    "name": "Can change auction product",
+    "content_type": 15,
+    "codename": "change_auctionproduct"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 59,
+  "fields": {
+    "name": "Can delete auction product",
+    "content_type": 15,
+    "codename": "delete_auctionproduct"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 60,
+  "fields": {
+    "name": "Can view auction product",
+    "content_type": 15,
+    "codename": "view_auctionproduct"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 1,
+  "fields": {
+    "app_label": "admin",
+    "model": "logentry"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 2,
+  "fields": {
+    "app_label": "auth",
+    "model": "permission"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 3,
+  "fields": {
+    "app_label": "auth",
+    "model": "group"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 4,
+  "fields": {
+    "app_label": "auth",
+    "model": "user"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 5,
+  "fields": {
+    "app_label": "contenttypes",
+    "model": "contenttype"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 6,
+  "fields": {
+    "app_label": "sessions",
+    "model": "session"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 7,
+  "fields": {
+    "app_label": "api_auth",
+    "model": "author"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 8,
+  "fields": {
+    "app_label": "api_auth",
+    "model": "role"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 9,
+  "fields": {
+    "app_label": "api_auth",
+    "model": "user"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 10,
+  "fields": {
+    "app_label": "api_product",
+    "model": "products"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 11,
+  "fields": {
+    "app_label": "api_product",
+    "model": "category"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 12,
+  "fields": {
+    "app_label": "api_payment",
+    "model": "payments"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 13,
+  "fields": {
+    "app_label": "api_payment",
+    "model": "paymentdetails"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 14,
+  "fields": {
+    "app_label": "api_product",
+    "model": "imageproduct"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 15,
+  "fields": {
+    "app_label": "api_product",
+    "model": "auctionproduct"
+  }
+},
+{
+  "model": "api_auth.role",
+  "pk": "afd44860-a106-4a2a-81f7-5805b9527d0c",
+  "fields": {
+    "create_at": "2023-04-30T08:51:51.729Z",
+    "update_at": "2023-04-30T08:51:51.729Z",
+    "is_active": true,
+    "name": "user"
+  }
+},
+{
+  "model": "api_auth.role",
+  "pk": "e4b66b8a-7394-462f-975c-1e80ba53af22",
+  "fields": {
+    "create_at": "2023-04-30T08:51:51.729Z",
+    "update_at": "2023-04-30T08:51:51.729Z",
+    "is_active": true,
+    "name": "admin"
+  }
+},
+{
+  "model": "api_auth.role",
+  "pk": "e77b1c72-f8d8-455b-8add-e3043f11ad3b",
+  "fields": {
+    "create_at": "2023-04-30T08:51:51.729Z",
+    "update_at": "2023-04-30T08:51:51.729Z",
+    "is_active": true,
+    "name": "author"
+  }
+},
+{
+  "model": "api_auth.user",
+  "pk": "01be662b-d5f6-4497-af86-e967942a1e12",
+  "fields": {
+    "last_login": null,
+    "create_at": "2023-05-01T18:14:48.725Z",
+    "update_at": "2023-05-01T18:14:48.725Z",
+    "is_active": true,
+    "email": "user1@gmail.com",
+    "password": "pbkdf2_sha256$600000$eZsfouiXQzJD4TWk9wdcMw$BGvxsbbTpkVJx+8aQC12vvMWArV3l/xpy6apVLunZx0=",
+    "role": "afd44860-a106-4a2a-81f7-5805b9527d0c",
+    "phone_number": "1234567899"
+  }
+},
+{
+  "model": "api_auth.user",
+  "pk": "8d2e9a5e-b191-4c13-9144-23e384d947ba",
+  "fields": {
+    "last_login": null,
+    "create_at": "2023-04-30T08:51:51.860Z",
+    "update_at": "2023-04-30T08:51:51.860Z",
+    "is_active": true,
+    "email": "admin@gmail.com",
+    "password": "pbkdf2_sha256$600000$0BybbQnXUEDJ4zJntiRMNT$jwuLqohEtCG40m7TWn82+wTYIIsyOWGd2F1a2Boe6ug=",
+    "role": "e4b66b8a-7394-462f-975c-1e80ba53af22",
+    "phone_number": null
+  }
+},
+{
+  "model": "api_auth.author",
+  "pk": "3e1da6cc-e951-4150-acb7-db3785ceed5d",
+  "fields": {
+    "create_at": "2023-05-21T06:55:10.006Z",
+    "update_at": "2023-05-21T06:55:10.006Z",
+    "is_active": true,
+    "name": "Nguyễn Văn Nhân",
+    "origin": "ABC",
+    "birthday": "2023-05-26",
+    "role": null
+  }
+},
+{
+  "model": "api_auth.author",
+  "pk": "616ee240-8e0d-4e4e-8bcc-bd1cf2927000",
+  "fields": {
+    "create_at": "2023-05-06T09:25:37.633Z",
+    "update_at": "2023-05-06T09:25:37.633Z",
+    "is_active": true,
+    "name": "Van Gogh",
+    "origin": "Netherlands",
+    "birthday": "30/5/1853",
+    "role": null
+  }
+},
+{
+  "model": "api_auth.author",
+  "pk": "751c3098-8c3a-4991-ac6a-643b290b9653",
+  "fields": {
+    "create_at": "2023-05-21T06:38:14.429Z",
+    "update_at": "2023-05-21T06:38:14.429Z",
+    "is_active": true,
+    "name": "Leonardo da Vinci",
+    "origin": "Italia",
+    "birthday": "15/4/1452",
+    "role": null
+  }
+},
+{
+  "model": "api_auth.author",
+  "pk": "90645b26-7ae1-4ec5-ac03-e4c6b64cce8a",
+  "fields": {
+    "create_at": "2023-05-21T06:53:06.946Z",
+    "update_at": "2023-05-21T06:53:06.946Z",
+    "is_active": true,
+    "name": "ABC",
+    "origin": "ACB",
+    "birthday": "2023-05-03",
+    "role": null
+  }
+},
+{
+  "model": "api_product.category",
+  "pk": "25d1c0f8-2b07-4f05-9f32-bc81929be2f3",
+  "fields": {
+    "create_at": null,
+    "update_at": null,
+    "is_active": true,
+    "name": "Tranh tôn giáo"
+  }
+},
+{
+  "model": "api_product.category",
+  "pk": "2c1d55c9-f15e-46d1-a419-ceb27897c40e",
+  "fields": {
+    "create_at": null,
+    "update_at": null,
+    "is_active": true,
+    "name": "Tranh phong cảnh"
+  }
+},
+{
+  "model": "api_product.category",
+  "pk": "48e224ac-29f2-49ff-939c-adcbb99ea9bf",
+  "fields": {
+    "create_at": null,
+    "update_at": null,
+    "is_active": true,
+    "name": "Tranh dân gian"
+  }
+},
+{
+  "model": "api_product.category",
+  "pk": "5bc01667-c2f3-464a-a6fe-65610e6c973c",
+  "fields": {
+    "create_at": null,
+    "update_at": null,
+    "is_active": true,
+    "name": "Tranh hoành tráng"
+  }
+},
+{
+  "model": "api_product.category",
+  "pk": "61de161f-4d1a-4120-86eb-25e94d506696",
+  "fields": {
+    "create_at": null,
+    "update_at": null,
+    "is_active": true,
+    "name": "Tranh chân dung"
+  }
+},
+{
+  "model": "api_product.category",
+  "pk": "acd170db-bfed-4382-bb5b-cc95fd145653",
+  "fields": {
+    "create_at": null,
+    "update_at": null,
+    "is_active": true,
+    "name": "Tranh tĩnh vật"
+  }
+},
+{
+  "model": "api_product.category",
+  "pk": "cb11a5da-8375-4698-9394-86a5ed6e969c",
+  "fields": {
+    "create_at": null,
+    "update_at": null,
+    "is_active": true,
+    "name": "Tranh chân dung"
+  }
+},
+{
+  "model": "api_product.category",
+  "pk": "d218eda7-0f99-40d6-932e-cef14eff0460",
+  "fields": {
+    "create_at": null,
+    "update_at": null,
+    "is_active": true,
+    "name": "Tranh sơn thủy"
+  }
+},
+{
+  "model": "api_product.category",
+  "pk": "d5f15433-bb22-42a7-aaf8-f9d7fa0860c2",
+  "fields": {
+    "create_at": null,
+    "update_at": null,
+    "is_active": true,
+    "name": "Tranh cổ động"
+  }
+},
+{
+  "model": "api_product.products",
+  "pk": "5c61d8a4-f67c-4650-988a-bb737be3f501",
+  "fields": {
+    "create_at": "2023-05-21T03:49:07.350Z",
+    "update_at": "2023-05-21T03:49:07.350Z",
+    "is_active": true,
+    "name": "Sun Flower version 8",
+    "slug": "sun_flower_version_8",
+    "category": "cb11a5da-8375-4698-9394-86a5ed6e969c",
+    "author": "616ee240-8e0d-4e4e-8bcc-bd1cf2927000",
+    "sold": false,
+    "description": "The Sun Flower",
+    "price": "1000000",
+    "start_auction": "05/12/2023",
+    "end_auction": "06/12/2023",
+    "auction_price": null
+  }
+},
+{
+  "model": "api_product.products",
+  "pk": "7667fa46-a8c3-4f7c-843c-48196f4cd990",
+  "fields": {
+    "create_at": "2023-05-20T11:26:04.590Z",
+    "update_at": "2023-05-20T11:26:04.590Z",
+    "is_active": true,
+    "name": "Sun Flower version 3",
+    "slug": "sun_flower_version_3",
+    "category": "acd170db-bfed-4382-bb5b-cc95fd145653",
+    "author": "616ee240-8e0d-4e4e-8bcc-bd1cf2927000",
+    "sold": false,
+    "description": "The Sun Flower",
+    "price": "1000000",
+    "start_auction": "05/12/2023",
+    "end_auction": "06/12/2023",
+    "auction_price": null
+  }
+},
+{
+  "model": "api_product.products",
+  "pk": "7773f76c-95c2-4369-aae4-0035ceddfe4c",
+  "fields": {
+    "create_at": "2023-05-12T14:51:50.309Z",
+    "update_at": "2023-05-12T15:20:25.423Z",
+    "is_active": true,
+    "name": "Wheatfield with Crows",
+    "slug": "wheatfield_with_crows",
+    "category": "2c1d55c9-f15e-46d1-a419-ceb27897c40e",
+    "author": "616ee240-8e0d-4e4e-8bcc-bd1cf2927000",
+    "sold": false,
+    "description": "The Wheatfield",
+    "price": "1000000",
+    "start_auction": "05/19/2023",
+    "end_auction": "06/19/2023",
+    "auction_price": "999999999"
+  }
+},
+{
+  "model": "api_product.products",
+  "pk": "822fa084-2a41-41ec-b631-d9e39c083d9c",
+  "fields": {
+    "create_at": "2023-05-21T06:59:47.538Z",
+    "update_at": "2023-05-21T06:59:47.538Z",
+    "is_active": true,
+    "name": "Done",
+    "slug": "done",
+    "category": "acd170db-bfed-4382-bb5b-cc95fd145653",
+    "author": "616ee240-8e0d-4e4e-8bcc-bd1cf2927000",
+    "sold": false,
+    "description": "laptop-key",
+    "price": "69",
+    "start_auction": "2023-05-10",
+    "end_auction": "2023-05-23",
+    "auction_price": null
+  }
+},
+{
+  "model": "api_product.products",
+  "pk": "842438dd-fe17-4e7c-82de-82b9acea8455",
+  "fields": {
+    "create_at": "2023-05-12T15:21:37.658Z",
+    "update_at": "2023-05-14T15:45:23.192Z",
+    "is_active": true,
+    "name": "Sun Flower",
+    "slug": "sun_flower",
+    "category": "2c1d55c9-f15e-46d1-a419-ceb27897c40e",
+    "author": "616ee240-8e0d-4e4e-8bcc-bd1cf2927000",
+    "sold": false,
+    "description": "The Sun Flower",
+    "price": "1000000",
+    "start_auction": "05/12/2023",
+    "end_auction": "06/12/2023",
+    "auction_price": "99999989"
+  }
+},
+{
+  "model": "api_product.products",
+  "pk": "a9d66556-a802-4f32-89bd-ca05a0fa3303",
+  "fields": {
+    "create_at": "2023-05-20T11:27:41.008Z",
+    "update_at": "2023-05-20T11:27:41.008Z",
+    "is_active": true,
+    "name": "Sun Flower version 6",
+    "slug": "sun_flower_version_6",
+    "category": "cb11a5da-8375-4698-9394-86a5ed6e969c",
+    "author": "616ee240-8e0d-4e4e-8bcc-bd1cf2927000",
+    "sold": false,
+    "description": "The Sun Flower",
+    "price": "1000000",
+    "start_auction": "05/12/2023",
+    "end_auction": "06/12/2023",
+    "auction_price": null
+  }
+},
+{
+  "model": "api_product.products",
+  "pk": "af07d714-b7cb-4f9a-9465-14e407919d85",
+  "fields": {
+    "create_at": "2023-05-20T11:15:06.199Z",
+    "update_at": "2023-05-20T11:15:06.199Z",
+    "is_active": true,
+    "name": "Sun Flower version 2",
+    "slug": "sun_flower_version_2",
+    "category": "acd170db-bfed-4382-bb5b-cc95fd145653",
+    "author": "616ee240-8e0d-4e4e-8bcc-bd1cf2927000",
+    "sold": false,
+    "description": "The Sun Flower",
+    "price": "1000000",
+    "start_auction": "05/12/2023",
+    "end_auction": "06/12/2023",
+    "auction_price": null
+  }
+},
+{
+  "model": "api_product.products",
+  "pk": "c2c4a1ea-3d87-46aa-b944-6177fb0a6eaf",
+  "fields": {
+    "create_at": "2023-05-21T03:51:27.505Z",
+    "update_at": "2023-05-21T03:51:27.505Z",
+    "is_active": true,
+    "name": "Sun Flower version 10",
+    "slug": "sun_flower_version_10",
+    "category": "cb11a5da-8375-4698-9394-86a5ed6e969c",
+    "author": "616ee240-8e0d-4e4e-8bcc-bd1cf2927000",
+    "sold": false,
+    "description": "The Sun Flower",
+    "price": "1000000",
+    "start_auction": "05/12/2023",
+    "end_auction": "06/12/2023",
+    "auction_price": null
+  }
+},
+{
+  "model": "api_product.products",
+  "pk": "d3c6ee0d-dea9-400f-8077-3e2b14bd5003",
+  "fields": {
+    "create_at": "2023-05-21T03:50:05.471Z",
+    "update_at": "2023-05-21T03:50:05.471Z",
+    "is_active": true,
+    "name": "Sun Flower version 9",
+    "slug": "sun_flower_version_9",
+    "category": "cb11a5da-8375-4698-9394-86a5ed6e969c",
+    "author": "616ee240-8e0d-4e4e-8bcc-bd1cf2927000",
+    "sold": false,
+    "description": "The Sun Flower",
+    "price": "1000000",
+    "start_auction": "05/12/2023",
+    "end_auction": "06/12/2023",
+    "auction_price": null
+  }
+},
+{
+  "model": "api_product.imageproduct",
+  "pk": "2eae1e9c-71ed-4dfd-b9fb-7a89bfd32c8b",
+  "fields": {
+    "create_at": "2023-05-12T14:55:46.484Z",
+    "update_at": "2023-05-12T14:55:46.484Z",
+    "is_active": true,
+    "product": "7773f76c-95c2-4369-aae4-0035ceddfe4c",
+    "image": "/media/05_12_2023%2C14_55_46_main_c767af11-88f0-40f9-a369-947ba188a05f_900x.webp"
+  }
+},
+{
+  "model": "api_product.imageproduct",
+  "pk": "48994406-f3c5-4ec5-9c28-b7ed57d954e0",
+  "fields": {
+    "create_at": "2023-05-20T11:28:23.256Z",
+    "update_at": "2023-05-20T11:28:23.256Z",
+    "is_active": true,
+    "product": "a9d66556-a802-4f32-89bd-ca05a0fa3303",
+    "image": "/media/05_20_2023%2C11_28_23_photo-1523413651479-597eb2da0ad6.jpeg"
+  }
+},
+{
+  "model": "api_product.imageproduct",
+  "pk": "4e796687-b0bb-4f90-9f53-2d52adb08468",
+  "fields": {
+    "create_at": "2023-05-21T03:49:59.680Z",
+    "update_at": "2023-05-21T03:49:59.680Z",
+    "is_active": true,
+    "product": "5c61d8a4-f67c-4650-988a-bb737be3f501",
+    "image": "/media/05_21_2023%2C03_49_59_william-james-glackens_treading-clams-wickford-1909.jpg"
+  }
+},
+{
+  "model": "api_product.imageproduct",
+  "pk": "58898195-2163-40e6-8a66-8e09c349a3e0",
+  "fields": {
+    "create_at": "2023-05-20T11:21:05.911Z",
+    "update_at": "2023-05-20T11:21:05.911Z",
+    "is_active": true,
+    "product": "af07d714-b7cb-4f9a-9465-14e407919d85",
+    "image": "/media/05_20_2023%2C11_21_05_vincent-van-gogh_windmils-at-dordrecht-1881.jpg"
+  }
+},
+{
+  "model": "api_product.imageproduct",
+  "pk": "7090f41e-0dd7-4857-9b4d-ccb4ddf329c9",
+  "fields": {
+    "create_at": "2023-05-12T15:25:04.838Z",
+    "update_at": "2023-05-12T15:25:04.838Z",
+    "is_active": true,
+    "product": "842438dd-fe17-4e7c-82de-82b9acea8455",
+    "image": "/media/05_12_2023%2C15_25_04_sunflowers.jpg"
+  }
+},
+{
+  "model": "api_product.imageproduct",
+  "pk": "78c7da7d-b0dc-41b5-ae62-dadc895a1388",
+  "fields": {
+    "create_at": "2023-05-21T03:51:42.890Z",
+    "update_at": "2023-05-21T03:51:42.890Z",
+    "is_active": true,
+    "product": "c2c4a1ea-3d87-46aa-b944-6177fb0a6eaf",
+    "image": "/media/05_21_2023%2C03_51_42_william-james-glackens_treading-clams-wickford-1909.jpg"
+  }
+},
+{
+  "model": "api_product.imageproduct",
+  "pk": "b6bd285a-983e-4a59-9868-060fef4047d9",
+  "fields": {
+    "create_at": "2023-05-12T15:25:04.838Z",
+    "update_at": "2023-05-12T15:25:04.838Z",
+    "is_active": true,
+    "product": "842438dd-fe17-4e7c-82de-82b9acea8455",
+    "image": "/media/05_12_2023%2C15_25_04_sunflower2.jpeg"
+  }
+},
+{
+  "model": "api_product.imageproduct",
+  "pk": "ba6dafbe-8c7f-42e8-8cee-27aff8b7fd53",
+  "fields": {
+    "create_at": "2023-05-20T11:21:05.911Z",
+    "update_at": "2023-05-20T11:21:05.911Z",
+    "is_active": true,
+    "product": "af07d714-b7cb-4f9a-9465-14e407919d85",
+    "image": "/media/05_20_2023%2C11_21_05_william-james-glackens_new-castle-new-hampshire-1909.jpg"
+  }
+},
+{
+  "model": "api_product.imageproduct",
+  "pk": "dca09175-2a70-41c0-bdcf-d53ca4df9820",
+  "fields": {
+    "create_at": "2023-05-12T14:55:46.484Z",
+    "update_at": "2023-05-12T14:55:46.484Z",
+    "is_active": true,
+    "product": "7773f76c-95c2-4369-aae4-0035ceddfe4c",
+    "image": "/media/05_12_2023%2C14_55_46_Final-Rapproch_C3_A901-5_720x.webp"
+  }
+},
+{
+  "model": "api_product.imageproduct",
+  "pk": "dea73d97-bb36-47cc-b216-7f8e6a762776",
+  "fields": {
+    "create_at": "2023-05-21T03:50:15.132Z",
+    "update_at": "2023-05-21T03:50:15.132Z",
+    "is_active": true,
+    "product": "d3c6ee0d-dea9-400f-8077-3e2b14bd5003",
+    "image": "/media/05_21_2023%2C03_50_15_william-james-glackens_treading-clams-wickford-1909.jpg"
+  }
+},
+{
+  "model": "api_product.imageproduct",
+  "pk": "e55b6a4e-5699-489c-b671-e320593c822d",
+  "fields": {
+    "create_at": "2023-05-21T06:59:49.103Z",
+    "update_at": "2023-05-21T06:59:49.103Z",
+    "is_active": true,
+    "product": "822fa084-2a41-41ec-b631-d9e39c083d9c",
+    "image": "/media/05_21_2023%2C06_59_49_left-arrow.png"
+  }
+},
+{
+  "model": "api_product.imageproduct",
+  "pk": "e5a9e6a6-2e86-4cdf-aa1b-186c40d556b4",
+  "fields": {
+    "create_at": "2023-05-20T11:26:34.614Z",
+    "update_at": "2023-05-20T11:26:34.614Z",
+    "is_active": true,
+    "product": "7667fa46-a8c3-4f7c-843c-48196f4cd990",
+    "image": "/media/05_20_2023%2C11_26_34_photo-1523413651479-597eb2da0ad6.jpeg"
+  }
+},
+{
+  "model": "api_product.imageproduct",
+  "pk": "ec5ad74c-2440-468b-a56c-98573536dc3b",
+  "fields": {
+    "create_at": "2023-05-12T14:55:46.484Z",
+    "update_at": "2023-05-12T14:55:46.484Z",
+    "is_active": true,
+    "product": "7773f76c-95c2-4369-aae4-0035ceddfe4c",
+    "image": "/media/05_12_2023%2C14_55_46_Final-Rapproch_C3_A902-5_720x.webp"
+  }
+},
+{
+  "model": "api_product.auctionproduct",
+  "pk": "968f95e1-06ce-4175-b01e-09f99506a659",
+  "fields": {
+    "create_at": "2023-05-13T15:59:10.895Z",
+    "update_at": "2023-05-13T15:59:10.896Z",
+    "is_active": true,
+    "product": "842438dd-fe17-4e7c-82de-82b9acea8455",
+    "user": "01be662b-d5f6-4497-af86-e967942a1e12",
+    "is_success": true,
+    "auction_price": "999999"
+  }
+},
+{
+  "model": "api_product.auctionproduct",
+  "pk": "a4c99d1a-f4c9-4483-894f-27eba31fad22",
+  "fields": {
+    "create_at": "2023-05-14T15:45:23.185Z",
+    "update_at": "2023-05-14T15:45:23.185Z",
+    "is_active": true,
+    "product": "842438dd-fe17-4e7c-82de-82b9acea8455",
+    "user": "01be662b-d5f6-4497-af86-e967942a1e12",
+    "is_success": true,
+    "auction_price": "99999989"
+  }
+}
+]

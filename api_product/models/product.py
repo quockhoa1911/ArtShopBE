@@ -38,8 +38,8 @@ class AuctionProduct(BaseModel):
                                 null=True, blank=True)
     user = models.ForeignKey(to=User, on_delete=models.CASCADE, related_name="auctionproduct", default=None, null=True,
                              blank=True)
-    is_success = models.BooleanField(default=True, null=True, blank=True)
-    auction_price = models.CharField(max_length=256, null=True, blank=True, default=None)
+    is_success = models.BooleanField(default=False, null=True, blank=True)
+    auction_price = models.FloatField(null=True, blank=True, default=None)
 
     class Meta:
         db_table = "auction_products"

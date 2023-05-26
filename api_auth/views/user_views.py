@@ -4,7 +4,7 @@ from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.decorators import action
 from api_auth.services import UserServices
-from api_auth.models import User
+from api_auth.models import User, Role
 from django.shortcuts import get_object_or_404
 
 
@@ -18,8 +18,23 @@ class UserModelViewSet(BaseAdminModelView):
     }
     serializer_class = UserResponseSerializers
     queryset = User.objects.all()
+
+    def list(self, request, *args, **kwargs):
+        role = Role.objects.get(name="user")
+        user = User.objects.filter(role=role)
+        if len(user) > 1:
+            many = True
+        else:
+            many = False
+            user = user.first()
+        serializer = UserResponseSerializers(instance=user, many=many)
+        return Response(data=[serializer.data] if not many else serializer.data,
+                        status=status.HTTP_200_OK)
+
     def create(self, request, *args, **kwargs):
         data = request.data
+        role = Role.objects.get(name="user")
+        data["role"] = role.id.hex
         serializer = UserRegisterSerializers(data=data)
         serializer.is_valid(raise_exception=True)
         serializer.save()
@@ -37,5 +52,13 @@ class UserModelViewSet(BaseAdminModelView):
     def me(self, request, *args, **kwargs):
         id = request.user.id
         user = get_object_or_404(User, pk=id)
+        serializer = UserResponseSerializers(instance=user, many=False)
+        return Response(data=serializer.data, status=status.HTTP_200_OK)
+
+    @action(methods=["PUT"], detail=True, name="change_active")
+    def change_active(self, request, pk, *args, **kwargs):
+        user = User.objects.get(pk=pk)
+        user.is_active = not user.is_active
+        user.save()
         serializer = UserResponseSerializers(instance=user, many=False)
         return Response(data=serializer.data, status=status.HTTP_200_OK)
