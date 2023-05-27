@@ -30,8 +30,10 @@ class ProductViewSet(BaseAdminModelView):
                 serializers = ProductResponseSerializer(instance=page, many=True)
                 return self.get_paginated_response(data=serializers.data)
         else:
-            serializers = ProductResponseSerializer(many=True, instance=queries)
-        return self.get_paginated_response(serializers.data)
+            page = self.paginate_queryset(queries)
+            if page:
+                serializers = ProductResponseSerializer(instance=page, many=True)
+                return self.get_paginated_response(data=serializers.data)
 
     @action(methods=["GET"], detail=True, name="get_product_of_category")
     def get_product_of_category(self, request, pk, *args, **kwargs):
