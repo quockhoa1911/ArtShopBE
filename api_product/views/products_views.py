@@ -36,11 +36,7 @@ class ProductViewSet(BaseAdminModelView):
     @action(methods=["GET"], detail=True, name="get_product_of_category")
     def get_product_of_category(self, request, pk, *args, **kwargs):
         data = ProductService().get_product_of_category(id_category=pk)
-        status_res = status.HTTP_200_OK
-        if data is None:
-            data = "Category hasn't product"
-            status_res = status.HTTP_400_BAD_REQUEST
-        return Response(data=data, status=status_res)
+        return Response(data=data if data is not None else [], status=status.HTTP_200_OK)
 
     def create(self, request, *args, **kwargs):
         data = request.data

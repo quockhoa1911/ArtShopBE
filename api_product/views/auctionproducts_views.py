@@ -47,4 +47,4 @@ class AuctionProductViewSet(BaseAdminModelView):
                 many = False
             serializer = AuctionProductResponseSerializers(instance=queries, many=many)
             return Response(data=serializer.data if many else [serializer.data], status=status.HTTP_200_OK)
-        return Response(data="Products hasn't auction", status=status.HTTP_400_BAD_REQUEST)
+        return Response(data=[], status=status.HTTP_200_OK)
