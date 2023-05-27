@@ -78,4 +78,18 @@ class ProductViewSet(BaseAdminModelView):
         if not files and not objs:
             product.delete()
         message = "successfully" if objs is not None and files else "file is not valid"
-        return Response(data=message, status=status.HTTP_200_OK if objs is not None and files else status.HTTP_400_BAD_REQUEST)
+        return Response(data=message,
+                        status=status.HTTP_200_OK if objs is not None and files else status.HTTP_400_BAD_REQUEST)
+
+    @action(methods=["DELETE"], detail=False, name="remove_image")
+    def remove_image(self, request, *args, **kwargs):
+        queries = ImageProduct.objects.all()
+        for a in queries:
+            a.delete()
+        return Response(data="Delete success", status=status.HTTP_204_NO_CONTENT)
+
+    @action(methods=['POST'], detail=True, name='up_image_link')
+    def up_image_link(self, request, pk, *args, **kwargs):
+        product = Products.objects.get(pk=pk)
+        ImageProduct(product=product, image=request.data["link"]).save()
+        return Response(data="Save success", status=status.HTTP_201_CREATED)
