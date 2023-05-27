@@ -42,6 +42,6 @@ class UserResponseSerializers(serializers.ModelSerializer):
 
     def to_representation(self, instance):
         instance = super().to_representation(instance)
-        # queries = AuctionProduct.objects.filter(user=instance.get("id"))
-        # instance["total_auction_price"] = queries.aggregate(total=Sum('auction_price')).get("total")
+        queries = AuctionProduct.objects.filter(user=instance.get("id"))
+        instance["total_auction_price"] = queries.aggregate(total=Sum('auction_price')).get("total")
         return instance
