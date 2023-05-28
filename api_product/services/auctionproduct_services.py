@@ -31,7 +31,7 @@ class AuctionProductService:
             multi_thread = Multi_Thread(html=string_html, target=Send_Mail_Service.send_mail,
                                         content_main_body='Content_main_body', header='Auction success',
                                         from_email='noreply@gmail.com',
-                                        to_emails=["quockhoa1911@gmail.com"])
+                                        to_emails=[auction_product.user.email])
             multi_thread.start()
 
             return {"message": "Approve Auction Success"}, True
