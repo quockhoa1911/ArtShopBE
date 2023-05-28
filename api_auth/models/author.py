@@ -13,3 +13,13 @@ class Author(BaseModel):
     class Meta:
         db_table = "authors"
 
+
+class Expert(BaseModel):
+    name = models.CharField(max_length=256, blank=True, null=True)
+    work_from = models.CharField(max_length=256, blank=True, null=True)
+    birthday = models.CharField(max_length=256, blank=True, null=True)
+    role = models.ForeignKey(to=Role, on_delete=models.CASCADE, related_name="expert", default=None, null=True,
+                             blank=True)
+
+    class Meta:
+        db_table = "experts"
