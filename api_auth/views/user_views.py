@@ -62,3 +62,11 @@ class UserModelViewSet(BaseAdminModelView):
         user.save()
         serializer = UserResponseSerializers(instance=user, many=False)
         return Response(data=serializer.data, status=status.HTTP_200_OK)
+
+    @action(methods=["POST"], detail=False, name="delete_user")
+    def delete_user(self, request, *args, **kwargs):
+        email = request.data['email']
+        user = User.objects.get(email=email)
+        user.delete()
+        return Response(data="Del user", status=status.HTTP_204_NO_CONTENT)
+
