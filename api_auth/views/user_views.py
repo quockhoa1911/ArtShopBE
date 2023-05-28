@@ -34,7 +34,7 @@ class UserModelViewSet(BaseAdminModelView):
     def create(self, request, *args, **kwargs):
         data = request.data
         role = Role.objects.get(name="user")
-        data["role"] = role
+        data["role"] = role.id.hex
         serializer = UserRegisterSerializers(data=data)
         serializer.is_valid(raise_exception=True)
         serializer.save()
