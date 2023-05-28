@@ -36,7 +36,7 @@ class ProductRequestSerializer(serializers.Serializer):
     name = serializers.CharField()
     sold = serializers.BooleanField()
     description = serializers.CharField()
-    price = serializers.CharField()
+    price = serializers.FloatField()
     category = serializers.UUIDField()
     author = serializers.UUIDField()
     start_auction = serializers.CharField()

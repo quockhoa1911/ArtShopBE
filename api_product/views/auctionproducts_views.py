@@ -48,3 +48,8 @@ class AuctionProductViewSet(BaseAdminModelView):
             serializer = AuctionProductResponseSerializers(instance=queries, many=many)
             return Response(data=serializer.data if many else [serializer.data], status=status.HTTP_200_OK)
         return Response(data=[], status=status.HTTP_200_OK)
+
+    @action(methods=["GET"], detail=True, name="approve_auction")
+    def approve_auction(self, request, pk, *args, **kwargs):
+        message, is_valid = AuctionProductService.approve_auction(pk=pk)
+        return Response(data=message, status=status.HTTP_200_OK if is_valid else status.HTTP_400_BAD_REQUEST)

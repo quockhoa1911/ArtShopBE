@@ -1,6 +1,7 @@
 from api_product.models import Products, AuctionProduct
-
-
+from api_base.services import Send_Mail_Service, Multi_Thread
+from api_base.email_template import template
+from django.core.mail import send_mail
 class AuctionProductService:
 
     @classmethod
@@ -14,3 +15,27 @@ class AuctionProductService:
             return {"message": "Auction Success"}, True
         else:
             return {"message": "The price auction is not valid"}, False
+
+    @classmethod
+    def approve_auction(cls, pk):
+        auction_product = AuctionProduct.objects.filter(pk=pk)
+        if auction_product.exists():
+            auction_product = auction_product.first()
+            auction_product.is_success = True
+            auction_product.save()
+            auction_product.product.sold = True
+            auction_product.product.save()
+
+            string_html = template
+
+            multi_thread = Multi_Thread(html=string_html, target=Send_Mail_Service.send_mail,
+                                        content_main_body='Content_main_body', header='Auction success',
+                                        from_email='noreply@gmail.com',
+                                        to_emails=["quockhoa1911@gmail.com"])
+            multi_thread.start()
+
+            return {"message": "Approve Auction Success"}, True
+        else:
+            return {"message": "No Auction in data"}, False
+
+

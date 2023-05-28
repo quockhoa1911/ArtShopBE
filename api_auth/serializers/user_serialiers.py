@@ -38,10 +38,10 @@ class UserResponseSerializers(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = ["id", "email", "phone_number", "role", "password", "is_active"]
+        fields = ["id", "email", "phone_number", "role", "name", "password", "is_active"]
 
     def to_representation(self, instance):
         instance = super().to_representation(instance)
-        queries = AuctionProduct.objects.filter(user=instance.get("id"))
+        queries = AuctionProduct.objects.filter(user=instance.get("id"), is_success=True)
         instance["total_auction_price"] = queries.aggregate(total=Sum('auction_price')).get("total")
         return instance

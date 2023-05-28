@@ -15,10 +15,10 @@ class Products(BaseModel):
                                blank=True)
     sold = models.BooleanField(default=False, null=True, blank=True)
     description = models.TextField(default=None, null=True, blank=True)
-    price = models.CharField(max_length=256, null=True, blank=True)
+    price = models.FloatField(max_length=256, null=True, blank=True)
     start_auction = models.CharField(max_length=256, null=True, blank=True, default=None)
     end_auction = models.CharField(max_length=256, null=True, blank=True, default=None)
-    auction_price = models.CharField(max_length=256, null=True, blank=True)
+    auction_price = models.FloatField(max_length=256, null=True, blank=True)
 
     class Meta:
         db_table = "products"

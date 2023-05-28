@@ -12,3 +12,4 @@ class Author(BaseModel):
 
     class Meta:
         db_table = "authors"
+

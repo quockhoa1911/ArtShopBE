@@ -93,21 +93,24 @@ WSGI_APPLICATION = 'core.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-#         'NAME': os.getenv("db_name"),
-#         'USER': os.getenv("username"),
-#         'PASSWORD': os.getenv("password"),
-#         'HOST': os.getenv("db_host"),
-#         'PORT': os.getenv("db_port"),
-#     }
-# }
-
 DATABASES = {
-    "default": dj_database_url.parse(os.getenv("DATABASE_URL"))
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': os.getenv("db_name"),
+        'USER': os.getenv("username"),
+        'PASSWORD': os.getenv("password"),
+        'HOST': os.getenv("db_host"),
+        'PORT': os.getenv("db_port"),
+    }
 }
 
+# DATABASES = {
+#     "default": dj_database_url.parse(os.getenv("DATABASE_URL"))
+# }
+
+# mail config
+EMAIL_ADDRESS = os.getenv('email_address')
+EMAIL_PASSWORD = os.getenv('password_email')
 
 SIMPLE_JWT = {
     'ACCESS_TOKEN_LIFETIME': timedelta(days=9),
