@@ -15,10 +15,11 @@ class UserRegisterSerializers(serializers.ModelSerializer):
     email = serializers.EmailField()
     password = serializers.CharField()
     phone_number = serializers.CharField(max_length=10, min_length=10)
+    name = serializers.CharField()
 
     class Meta:
         model = User
-        fields = ['email', 'password', 'phone_number']
+        fields = ['email', 'password', 'phone_number', 'name']
 
     def validate_email(self, value):
         user = User.objects.filter(email__iexact=value)

@@ -17,7 +17,8 @@ class UserServices:
                 "access_token": str(token.access_token),
                 "refresh_token": str(token),
                 "email": user.email,
-                "role": user.role.name
+                "role": user.role.name,
+                "name": user.name
             }
             return data
         else:
