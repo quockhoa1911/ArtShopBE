@@ -24,7 +24,7 @@ class UserModelViewSet(BaseAdminModelView):
         user = User.objects.filter(role=role)
         if len(user) > 1:
             many = True
-        else:
+        if len(user) == 1:
             many = False
             user = user.first()
         serializer = UserResponseSerializers(instance=user, many=many)
@@ -34,7 +34,7 @@ class UserModelViewSet(BaseAdminModelView):
     def create(self, request, *args, **kwargs):
         data = request.data
         role = Role.objects.get(name="user")
-        data["role"] = role.id.hex
+        data["role"] = role
         serializer = UserRegisterSerializers(data=data)
         serializer.is_valid(raise_exception=True)
         serializer.save()
