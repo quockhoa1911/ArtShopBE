@@ -18,7 +18,7 @@ class Products(BaseModel):
     price = models.FloatField(max_length=256, null=True, blank=True)
     start_auction = models.CharField(max_length=256, null=True, blank=True, default=None)
     end_auction = models.CharField(max_length=256, null=True, blank=True, default=None)
-    auction_price = models.FloatField(max_length=256, null=True, blank=True)
+    auction_price = models.FloatField(max_length=256, null=True, blank=True, default=0)
 
     class Meta:
         db_table = "products"
@@ -39,7 +39,7 @@ class AuctionProduct(BaseModel):
     user = models.ForeignKey(to=User, on_delete=models.CASCADE, related_name="auctionproduct", default=None, null=True,
                              blank=True)
     is_success = models.BooleanField(default=False, null=True, blank=True)
-    auction_price = models.FloatField(null=True, blank=True, default=None)
+    auction_price = models.FloatField(null=True, blank=True, default=0)
 
     class Meta:
         db_table = "auction_products"
