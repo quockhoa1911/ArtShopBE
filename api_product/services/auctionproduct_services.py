@@ -8,7 +8,7 @@ class AuctionProductService:
     def create(cls, request, data):
         auction_price = data["auction_price"]
         product = Products.objects.filter(pk=data["product_id"]).first()
-        if product and float(auction_price) > float(product.auction_price if product.auction_price is not None else 0):
+        if product and float(auction_price) > float(product.auction_price) and float(auction_price) > float(product.price):
             AuctionProduct(product=product, auction_price=auction_price, is_success=True, user=request.user).save()
             product.auction_price = auction_price
             product.save()
