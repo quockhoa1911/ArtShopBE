@@ -15,4 +15,4 @@ class AuctionProductResponseSerializers(serializers.ModelSerializer):
 
 class AuctionProductRequestSerializers(serializers.Serializer):
     product_id = serializers.UUIDField()
-    auction_price = serializers.FloatField()
+    auction_price = serializers.IntegerField()
