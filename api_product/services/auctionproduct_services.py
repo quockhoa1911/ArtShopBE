@@ -1,14 +1,18 @@
 from api_product.models import Products, AuctionProduct
 from api_base.services import Send_Mail_Service, Multi_Thread
 from api_base.email_template import template
-from django.core.mail import send_mail
+
+
 class AuctionProductService:
 
     @classmethod
     def create(cls, request, data):
         auction_price = data["auction_price"]
         product = Products.objects.filter(pk=data["product_id"]).first()
-        if product and float(auction_price) > float(product.auction_price) and float(auction_price) > float(product.price):
+        if float(auction_price) < float(product.price):
+            return {"message": "The price auction must larger than starting price"}, False
+        if product and float(auction_price) > float(product.auction_price) and float(auction_price) > float(
+                product.price):
             AuctionProduct(product=product, auction_price=auction_price, is_success=True, user=request.user).save()
             product.auction_price = auction_price
             product.save()
@@ -37,5 +41,3 @@ class AuctionProductService:
             return {"message": "Approve Auction Success"}, True
         else:
             return {"message": "No Auction in data"}, False
-
-
