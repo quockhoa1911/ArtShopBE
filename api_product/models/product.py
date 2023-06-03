@@ -16,8 +16,8 @@ class Products(BaseModel):
     sold = models.BooleanField(default=False, null=True, blank=True)
     description = models.TextField(default=None, null=True, blank=True)
     price = models.FloatField(max_length=256, null=True, blank=True)
-    start_auction = models.CharField(max_length=256, null=True, blank=True, default=None)
-    end_auction = models.CharField(max_length=256, null=True, blank=True, default=None)
+    start_auction = models.DateField(null=True, blank=True, default=None)
+    end_auction = models.DateField(null=True, blank=True, default=None)
     auction_price = models.FloatField(max_length=256, default=0)
 
     expert = models.ForeignKey(to=Expert, on_delete=models.CASCADE, related_name="product", default=None,

@@ -8,6 +8,7 @@ from api_product.models import Products, ImageProduct
 from rest_framework.decorators import action
 from api_base.services import BaseService
 from api_base.pagination import Base_CustomPagination
+from datetime import datetime
 
 
 # Create your views here.
@@ -16,7 +17,8 @@ class ProductViewSet(BaseAdminModelView):
     scopes = {
         "list": "anonymous,user",
         "retrieve": "anonymous,user",
-        "get_product_of_category": "anonymous,user"
+        "get_product_of_category": "anonymous,user",
+        "get_list_product_expire_auction": "anonymous,user"
     }
     queryset = Products.objects.all()
     serializer_class = ProductResponseSerializer
@@ -91,3 +93,15 @@ class ProductViewSet(BaseAdminModelView):
         product = Products.objects.get(pk=pk)
         ImageProduct(product=product, image=request.data["link"]).save()
         return Response(data="Save success", status=status.HTTP_201_CREATED)
+
+    @action(methods=['GET'], detail=False, name='get_list_product_expire_auction')
+    def get_list_product_expire_auction(self, request, *args, **kwargs):
+        queries = self.get_queryset().filter(end_auction__lt=datetime.now().date())
+        if queries.exists():
+            many = True
+            if len(queries) == 1:
+                many = False
+                queries = queries.first()
+            serializer = ProductResponseSerializer(instance=queries, many=many)
+            return Response(data=serializer.data if many else [serializer.data], status=status.HTTP_200_OK)
+        return Response(data=[], status=status.HTTP_200_OK)
