@@ -1,6 +1,6 @@
 from django.db import models
 from api_base.models import BaseModel
-from api_auth.models import Author, User
+from api_auth.models import Author, User, Expert
 from api_product.models import Category
 
 
@@ -19,6 +19,10 @@ class Products(BaseModel):
     start_auction = models.CharField(max_length=256, null=True, blank=True, default=None)
     end_auction = models.CharField(max_length=256, null=True, blank=True, default=None)
     auction_price = models.FloatField(max_length=256, default=0)
+
+    expert = models.ForeignKey(to=Expert, on_delete=models.CASCADE, related_name="product", default=None,
+                               null=True, blank=True)
+    expert_price = models.FloatField(max_length=256, null=True, blank=True)
 
     class Meta:
         db_table = "products"

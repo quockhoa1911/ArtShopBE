@@ -1,5 +1,6 @@
 import re
 
+
 class Utils:
     @staticmethod
     def no_accent_vietnamese(s):

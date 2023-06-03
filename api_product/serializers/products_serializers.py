@@ -1,9 +1,11 @@
 from rest_framework import serializers
-from api_product.models import Products, ImageProduct
+from api_product.models import Products
 from api_product.serializers import CategoryResponseSerializer
-from api_auth.serializers import AuthorResponseSerializer
+from api_auth.serializers import AuthorResponseSerializer, ExpertResponseSerializer
 from api_product.models import AuctionProduct
 from django.db.models import Q
+
+
 # class ImageProductSerializer(serializers.ModelSerializer):
 #     class Meta:
 #         model = ImageProduct
@@ -19,16 +21,19 @@ class ProductResponseSerializer(serializers.ModelSerializer):
         slug_field="image",
         source="imageproduct"
     )
+    expert = ExpertResponseSerializer(many=False, read_only=True)
 
     class Meta:
         model = Products
-        fields = ["id", "name", "category", "author", "slug", "sold", "images", "description", "price", "start_auction", "end_auction",
-                  "auction_price"]
+        fields = ["id", "name", "category", "author", "slug", "sold", "images", "description", "price", "start_auction",
+                  "end_auction",
+                  "auction_price", "expert", "expert_price"]
 
     def to_representation(self, instance):
         instance = super().to_representation(instance)
         id_products = instance.get('id')
-        instance['auction_participant'] = len(AuctionProduct.objects.filter(product=id_products).values("user").distinct())
+        instance['auction_participant'] = len(
+            AuctionProduct.objects.filter(product=id_products).values("user").distinct())
         return instance
 
 
@@ -39,6 +44,8 @@ class ProductRequestSerializer(serializers.Serializer):
     price = serializers.FloatField()
     category = serializers.UUIDField()
     author = serializers.UUIDField()
+    expert = serializers.UUIDField()
+    expert_price = serializers.FloatField()
     start_auction = serializers.CharField()
     end_auction = serializers.CharField()
 

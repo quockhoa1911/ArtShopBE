@@ -1,5 +1,5 @@
 from api_product.models import Products, Category
-from api_auth.models import Author
+from api_auth.models import Author, Expert
 from api_product.serializers import ProductResponseSerializer
 from api_base.utils import Utils
 
@@ -10,6 +10,7 @@ class ProductService:
         product['category'] = Category.objects.get(pk=product['category'])
         product['author'] = Author.objects.get(pk=product['author'])
         product['slug'] = Utils.no_accent_vietnamese(product.get("name").lower()).replace(" ", "_")
+        product['expert'] = Expert.objects.get(pk=product['expert'])
         obj, created = Products.objects.update_or_create(
             id=id if id is not None else None,
             defaults={**product}
