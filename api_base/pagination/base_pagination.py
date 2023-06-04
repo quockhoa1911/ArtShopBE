@@ -15,5 +15,6 @@ class Base_CustomPagination(PageNumberPagination):
             },
             'total_all': self.page.paginator.count,
             'total_of_page': len(data),
+            'total_page': self.page.paginator.num_pages,
             'data': data
         })
