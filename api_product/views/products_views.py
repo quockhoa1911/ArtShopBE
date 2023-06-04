@@ -98,10 +98,18 @@ class ProductViewSet(BaseAdminModelView):
     def get_list_product_expire_auction(self, request, *args, **kwargs):
         queries = self.get_queryset().filter(end_auction__lt=datetime.now().date())
         if queries.exists():
-            many = True
-            if len(queries) == 1:
-                many = False
-                queries = queries.first()
-            serializer = ProductResponseSerializer(instance=queries, many=many)
-            return Response(data=serializer.data if many else [serializer.data], status=status.HTTP_200_OK)
-        return Response(data=[], status=status.HTTP_200_OK)
+            page = self.paginate_queryset(queries)
+            if page is not None:
+                serializer = self.get_serializer(page, many=True)
+                return self.get_paginated_response(serializer.data)
+
+        return Response({
+            'page': {
+                'next': None,
+                'previous': None
+            },
+            'total_all': None,
+            'total_of_page': None,
+            'total_page': None,
+            'data': []
+        })
