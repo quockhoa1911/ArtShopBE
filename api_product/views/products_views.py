@@ -110,6 +110,6 @@ class ProductViewSet(BaseAdminModelView):
             },
             'total_all': None,
             'total_of_page': None,
-            'total_page': None,
+            'total_page': 0,
             'data': []
         })
