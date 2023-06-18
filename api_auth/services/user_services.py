@@ -15,6 +15,7 @@ class UserServices:
             token = RefreshToken.for_user(user)
             token["email"] = user.email
             token["name"] = user.name
+            token["role"] = user.role.name
             data = {
                 "access_token": str(token.access_token),
                 "refresh_token": str(token),
