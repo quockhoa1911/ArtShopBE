@@ -13,6 +13,8 @@ class UserServices:
             if not check_password(data['password'], user.password): raise Exception("Password is not correct!")
 
             token = RefreshToken.for_user(user)
+            token["email"] = user.email
+            token["name"] = user.name
             data = {
                 "access_token": str(token.access_token),
                 "refresh_token": str(token),

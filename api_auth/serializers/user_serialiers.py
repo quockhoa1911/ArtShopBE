@@ -4,6 +4,7 @@ from api_auth.serializers import RoleResponseSerializer
 from django.contrib.auth.hashers import make_password
 from api_product.models import AuctionProduct
 from django.db.models import Sum
+from django.db.models import Q
 
 
 class UserLoginSerialiers(serializers.Serializer):
@@ -32,6 +33,25 @@ class UserRegisterSerializers(serializers.ModelSerializer):
         validated_data['password'] = make_password(password)
         return super().create(validated_data)
 
+
+# class UserUpdateSerializer(serializers.Serializer):
+#     name = serializers.CharField()
+#     phone_number = serializers.CharField(max_length=10, min_length=10)
+#
+#     def validate_name(self, value):
+#         user_id = self.context.get("id")
+#         user = User.objects.filter(~Q(pk=user_id) & Q(name__iexact=value))
+#         if user.exists():
+#             raise serializers.ValidationError("name must be unique")
+#         return value
+#
+#     def validate_phone_number(self, value):
+#         user_id = self.context.get("id")
+#         user = User.objects.filter(~Q(pk=user_id) & Q(phone_number__iexact=value))
+#         if user.exists():
+#             raise serializers.ValidationError("phone number must be unique")
+#         return value
+#
 
 class UserResponseSerializers(serializers.ModelSerializer):
     role = RoleResponseSerializer(many=False, read_only=True)

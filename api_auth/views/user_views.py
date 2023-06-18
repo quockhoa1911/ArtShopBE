@@ -14,7 +14,8 @@ class UserModelViewSet(BaseAdminModelView):
     scopes = {
         "create": "anonymous",
         "login": "anonymous",
-        "me": "user"
+        "me": "user",
+        # "update_profile": "user"
     }
     serializer_class = UserResponseSerializers
     queryset = User.objects.all()
@@ -55,6 +56,17 @@ class UserModelViewSet(BaseAdminModelView):
         serializer = UserResponseSerializers(instance=user, many=False)
         return Response(data=serializer.data, status=status.HTTP_200_OK)
 
+    # @action(methods=['POST'], detail=False, url_path="me/update_profile", name="update_profile")
+    # def update_profile(self, request, *args, **kwargs):
+    #     user = request.user
+    #     context = {"id": user.id.hex}
+    #     serializer = UserUpdateSerializer(data=request.data, context=context)
+    #     serializer.is_valid(raise_exception=True)
+    #     user.name = serializer.validated_data["name"]
+    #     user.phone_number = serializer.validated_data["phone_number"]
+    #     user.save()
+    #     return Response(data="Update success", status=status.HTTP_200_OK)
+
     @action(methods=["PUT"], detail=True, name="change_active")
     def change_active(self, request, pk, *args, **kwargs):
         user = User.objects.get(pk=pk)
@@ -69,4 +81,3 @@ class UserModelViewSet(BaseAdminModelView):
         user = User.objects.get(email=email)
         user.delete()
         return Response(data="Del user", status=status.HTTP_204_NO_CONTENT)
-
