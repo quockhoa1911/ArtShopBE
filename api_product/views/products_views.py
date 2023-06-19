@@ -31,7 +31,7 @@ class ProductViewSet(BaseAdminModelView):
     pagination_class = Base_CustomPagination
 
     def list(self, request, *args, **kwargs):
-        search = request.GET.get("search",None)
+        search = request.GET.get("search", None)
         condition = Q()
         if search:
             condition |= Q(name__icontains=search)
