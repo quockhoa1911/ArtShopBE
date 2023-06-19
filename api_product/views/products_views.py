@@ -31,7 +31,11 @@ class ProductViewSet(BaseAdminModelView):
     pagination_class = Base_CustomPagination
 
     def list(self, request, *args, **kwargs):
-        queries = self.get_queryset()
+        search = request.GET.get("search",None)
+        condition = Q()
+        if search:
+            condition |= Q(name__icontains=search)
+        queries = self.get_queryset().filter(condition)
         if request.user.is_anonymous:
             page = self.paginate_queryset(queries)
             if page:
