@@ -38,9 +38,8 @@ class ProductViewSet(BaseAdminModelView):
         queries = self.get_queryset().filter(condition)
         if request.user.is_anonymous:
             page = self.paginate_queryset(queries)
-            if page:
-                serializers = ProductResponseSerializer(instance=page, many=True)
-                return self.get_paginated_response(data=serializers.data)
+            serializers = ProductResponseSerializer(instance=page, many=True)
+            return self.get_paginated_response(data=serializers.data)
         else:
             # id category
             url = f"https://tracking.loca.lt/event-tracking/get-popular-category-of-user"
@@ -63,9 +62,19 @@ class ProductViewSet(BaseAdminModelView):
                     page = self.paginate_queryset(combine_chain)
             else:
                 page = self.paginate_queryset(queries)
-            if page:
                 serializers = ProductResponseSerializer(instance=page, many=True)
                 return self.get_paginated_response(data=serializers.data)
+
+            return Response({
+                'page': {
+                    'next': None,
+                    'previous': None
+                },
+                'total_all': None,
+                'total_of_page': None,
+                'total_page': 0,
+                'data': []
+            })
 
     @action(methods=["GET"], detail=True, name="get_product_of_category")
     def get_product_of_category(self, request, pk, *args, **kwargs):
