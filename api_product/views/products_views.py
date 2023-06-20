@@ -10,7 +10,7 @@ from api_product.models import Products, ImageProduct
 from rest_framework.decorators import action
 from api_base.services import BaseService
 from api_base.pagination import Base_CustomPagination
-from datetime import datetime
+from datetime import datetime, timedelta
 from django.db.models import Q
 from itertools import chain
 import requests
@@ -60,6 +60,9 @@ class ProductViewSet(BaseAdminModelView):
                 if queries_filter.exists():
                     combine_chain = list(chain(queries_filter, queries.exclude(filter_condition)))
                     page = self.paginate_queryset(combine_chain)
+                    serializers = ProductResponseSerializer(instance=page, many=True)
+                    return self.get_paginated_response(data=serializers.data)
+
             else:
                 page = self.paginate_queryset(queries)
                 serializers = ProductResponseSerializer(instance=page, many=True)
@@ -155,7 +158,8 @@ class ProductViewSet(BaseAdminModelView):
 
     @action(methods=['GET'], detail=False, name='get_list_product_expire_auction')
     def get_list_product_expire_auction(self, request, *args, **kwargs):
-        queries = self.get_queryset().filter(end_auction__lt=datetime.now().date())
+        date = datetime.now() + timedelta(days=1)
+        queries = self.get_queryset().filter(end_auction__lt=date.date())
         if queries.exists():
             page = self.paginate_queryset(queries)
             if page is not None:
