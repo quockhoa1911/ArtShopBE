@@ -1,5 +1,6 @@
 from api_base.views import BaseModelView, BaseAdminModelView
-from api_auth.serializers import UserRegisterSerializers, UserLoginSerialiers, UserResponseSerializers
+from api_auth.serializers import UserRegisterSerializers, UserLoginSerialiers, UserResponseSerializers, \
+    UserUpdateSerializer
 from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.decorators import action
@@ -15,7 +16,7 @@ class UserModelViewSet(BaseAdminModelView):
         "create": "anonymous",
         "login": "anonymous",
         "me": "user",
-        # "update_profile": "user"
+        "update_profile": "user",
     }
     serializer_class = UserResponseSerializers
     queryset = User.objects.all()
@@ -55,6 +56,14 @@ class UserModelViewSet(BaseAdminModelView):
         user = get_object_or_404(User, pk=id)
         serializer = UserResponseSerializers(instance=user, many=False)
         return Response(data=serializer.data, status=status.HTTP_200_OK)
+
+    @action(methods=["PUT"], detail=False, name="update_profile")
+    def update_profile(self, request, *args, **kwargs):
+        context = {"id": request.user.id}
+        user_serializer = UserUpdateSerializer(data=request.data, context=context)
+        user_serializer.is_valid(raise_exception=True)
+        UserServices().update_user(pk=request.user.id, data=user_serializer.validated_data)
+        return Response(data="Update success", status=status.HTTP_200_OK)
 
     # @action(methods=['POST'], detail=False, url_path="me/update_profile", name="update_profile")
     # def update_profile(self, request, *args, **kwargs):

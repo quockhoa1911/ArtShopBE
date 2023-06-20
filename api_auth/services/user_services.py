@@ -1,5 +1,5 @@
 from api_auth.models import User
-from django.contrib.auth.hashers import check_password
+from django.contrib.auth.hashers import check_password, make_password
 from rest_framework_simplejwt.tokens import RefreshToken
 
 
@@ -21,8 +21,14 @@ class UserServices:
                 "refresh_token": str(token),
                 "email": user.email,
                 "role": user.role.name,
-                "name": user.name
+                "name": user.name,
+                "is_completed": user.is_completed
             }
             return data
         else:
             raise Exception("Email is not correct")
+
+    def update_user(self, pk, data):
+        password = data["password"]
+        data["password"] = make_password(password)
+        User.objects.filter(pk=pk).update(**data, is_completed=True)

@@ -2,6 +2,7 @@ from api_product.models import Products, Category
 from api_auth.models import Author, Expert
 from api_product.serializers import ProductResponseSerializer
 from api_base.utils import Utils
+from django.db.models import  Q
 
 
 class ProductService:
@@ -48,3 +49,19 @@ class ProductService:
         if len(queries_set) > 0:
             return queries_set
         return []
+
+    def get_suggest_list(self, pk):
+        category = Category.objects.filter(product__id=pk)
+        if category.exists():
+            category = category.first()
+            products = Products.objects.filter(Q(category=category) & ~Q(pk=pk)).order_by("-create_at")[:5]
+            if products.exists():
+                many = True
+                if len(products) == 1:
+                    many = False
+                    products = products.first()
+                product_serializer = ProductResponseSerializer(instance=products, many=many)
+                return product_serializer.data
+        return []
+
+

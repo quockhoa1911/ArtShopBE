@@ -5,6 +5,7 @@ from django.contrib.auth.hashers import make_password
 from api_product.models import AuctionProduct
 from django.db.models import Sum
 from django.db.models import Q
+from django.core.exceptions import ValidationError
 
 
 class UserLoginSerialiers(serializers.Serializer):
@@ -59,10 +60,46 @@ class UserResponseSerializers(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = ["id", "email", "phone_number", "role", "name", "password", "is_active"]
+        fields = ["id", "email", "phone_number",
+                  "role", "name", "password",
+                  "is_active", "visa_card",
+                  "is_completed", "address"]
 
     def to_representation(self, instance):
         instance = super().to_representation(instance)
         queries = AuctionProduct.objects.filter(user=instance.get("id"), is_success=True)
         instance["total_auction_price"] = queries.aggregate(total=Sum('auction_price')).get("total")
         return instance
+
+
+class UserUpdateSerializer(serializers.Serializer):
+    email = serializers.EmailField()
+    password = serializers.CharField()
+    phone_number = serializers.CharField(max_length=10, min_length=10)
+    name = serializers.CharField()
+    address = serializers.CharField()
+    visa_card = serializers.CharField(max_length=16)
+
+    def validate_email(self, value):
+        id = self.context.get("id", None)
+
+        condition = Q(email__iexact=value)
+        if id is not None:
+            condition &= ~Q(pk=id)
+
+        user = User.objects.filter(condition)
+        if user.exists():
+            raise ValidationError("email must be unique")
+        return value
+
+    def validate_phone_number(self, value):
+        id = self.context.get("id", None)
+
+        condition = Q(phone_number__iexact=value)
+        if id is not None:
+            condition &= ~Q(pk=id)
+
+        user = User.objects.filter(condition)
+        if user.exists():
+            raise ValidationError("phone_number must be unique")
+        return value

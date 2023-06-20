@@ -24,7 +24,8 @@ class ProductViewSet(BaseAdminModelView):
         "retrieve": "anonymous,user",
         "get_product_of_category": "anonymous,user",
         "get_list_product_expire_auction": "anonymous,user",
-        "search_product": "anonymous,user"
+        "search_product": "anonymous,user",
+        "get_suggest_list_of_product": "anonymous,user"
     }
     queryset = Products.objects.all()
     serializer_class = ProductResponseSerializer
@@ -56,7 +57,6 @@ class ProductViewSet(BaseAdminModelView):
             if request.GET.get("page", None) == 1 and res.status_code == 200:
                 filter_condition = Q(category__id="id1") | Q(category_id="id2")
                 queries_filter = queries.filter(filter_condition)
-                page = self.paginate_queryset(queries)
                 if queries_filter.exists():
                     combine_chain = list(chain(queries_filter, queries.exclude(filter_condition)))
                     page = self.paginate_queryset(combine_chain)
@@ -176,3 +176,10 @@ class ProductViewSet(BaseAdminModelView):
             'total_page': 0,
             'data': []
         })
+
+    @action(methods=["GET"], detail=True, name="get_suggest_list_of_product")
+    def get_suggest_list_of_product(self, request, pk, *args, **kwargs):
+        data = ProductService().get_suggest_list(pk)
+        return Response(data=data, status=status.HTTP_200_OK)
+
+

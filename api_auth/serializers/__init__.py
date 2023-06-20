@@ -1,4 +1,4 @@
 from .role_serializers import RoleResponseSerializer
-from .user_serialiers import UserLoginSerialiers, UserRegisterSerializers, UserResponseSerializers
+from .user_serialiers import UserLoginSerialiers, UserRegisterSerializers, UserResponseSerializers, UserUpdateSerializer
 from .author_serializer import AuthorResponseSerializer, AuthorRequestSerializer
 from .expert_serializers import ExpertResponseSerializer
