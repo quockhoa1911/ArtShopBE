@@ -44,7 +44,7 @@ class ProductViewSet(BaseAdminModelView):
         else:
             # id category
             url = f"https://tracking.loca.lt/event-tracking/get-popular-category-of-user"
-            params = {"userId": "5aac87af-5ac6-42a1-9ea2-b51fbd133d3e"}
+            params = {"userId": request.user.id}
             res = ""
             # res = requests.request("GET", url, params=params)
             # data = res.json()
@@ -56,7 +56,7 @@ class ProductViewSet(BaseAdminModelView):
             #         category = i["value"]
             if request.GET.get("page", None) == 1 and res.status_code == 200:
                 filter_condition = Q(category__id="id1") | Q(category_id="id2")
-                queries_filter = queries.filter(filter_condition)
+                queries_filter = queries.filter(filter_condition).order_by("-create_at")
                 if queries_filter.exists():
                     combine_chain = list(chain(queries_filter, queries.exclude(filter_condition)))
                     page = self.paginate_queryset(combine_chain)
