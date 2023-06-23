@@ -74,7 +74,6 @@ class UserResponseSerializers(serializers.ModelSerializer):
 
 class UserUpdateSerializer(serializers.Serializer):
     email = serializers.EmailField()
-    password = serializers.CharField()
     phone_number = serializers.CharField(max_length=10, min_length=10)
     name = serializers.CharField()
     address = serializers.CharField()

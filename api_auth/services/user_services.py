@@ -29,6 +29,4 @@ class UserServices:
             raise Exception("Email is not correct")
 
     def update_user(self, pk, data):
-        password = data["password"]
-        data["password"] = make_password(password)
         User.objects.filter(pk=pk).update(**data, is_completed=True)
