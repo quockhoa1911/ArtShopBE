@@ -25,7 +25,9 @@ class ProductViewSet(BaseAdminModelView):
         "get_product_of_category": "anonymous,user",
         "get_list_product_expire_auction": "anonymous,user",
         "search_product": "anonymous,user",
-        "get_suggest_list_of_product": "anonymous,user"
+        "get_suggest_list_of_product": "anonymous,user",
+        "get_product_trending": "anonymous,user",
+        "get_product_suggest_for_user": "anonymous,user"
     }
     queryset = Products.objects.all()
     serializer_class = ProductResponseSerializer
@@ -37,52 +39,54 @@ class ProductViewSet(BaseAdminModelView):
         if search:
             condition |= Q(name__icontains=search)
         queries = self.get_queryset().filter(condition)
-        if request.user.is_anonymous:
-            page = self.paginate_queryset(queries)
-            serializers = ProductResponseSerializer(instance=page, many=True)
-            return self.get_paginated_response(data=serializers.data)
-        else:
-            # id category
-            url = f"https://tracking.loca.lt/event-tracking/get-popular-category-of-user"
-            params = {"userId": request.user.id}
-            res = ""
-            # res = requests.request("GET", url, params=params)
-            # data = res.json()
-            # count_max = 0
-            # category = ""
-            # for i in data:
-            #     if i["count"] > count_max:
-            #         count_max = i["count"]
-            #         category = i["value"]
-            if request.GET.get("page", None) == 1 and res.status_code == 200:
-                filter_condition = Q(category__id="id1") | Q(category_id="id2")
-                queries_filter = queries.filter(filter_condition).order_by("-create_at")
-                if queries_filter.exists():
-                    combine_chain = list(chain(queries_filter, queries.exclude(filter_condition)))
-                    page = self.paginate_queryset(combine_chain)
-                    serializers = ProductResponseSerializer(instance=page, many=True)
-                    return self.get_paginated_response(data=serializers.data)
-
-            else:
-                page = self.paginate_queryset(queries)
-                serializers = ProductResponseSerializer(instance=page, many=True)
-                return self.get_paginated_response(data=serializers.data)
-
-            return Response({
-                'page': {
-                    'next': None,
-                    'previous': None
-                },
-                'total_all': None,
-                'total_of_page': None,
-                'total_page': 0,
-                'data': []
-            })
+        page = self.paginate_queryset(queries)
+        serializers = ProductResponseSerializer(instance=page, many=True)
+        return self.get_paginated_response(data=serializers.data)
 
     @action(methods=["GET"], detail=True, name="get_product_of_category")
     def get_product_of_category(self, request, pk, *args, **kwargs):
         data = ProductService().get_product_of_category(id_category=pk)
         return Response(data=data if data is not None else [], status=status.HTTP_200_OK)
+
+    # main page
+    @action(methods=["GET"], detail=False, name="get_product_trending")
+    def get_product_trending(self, request, *args, **kwargs):
+        url = "https://tracking.loca.lt"
+        # call get id trending
+        list_id_trending = []
+        condition = Q()
+        for i in list_id_trending:
+            condition |= Q(pk=i)
+        queries = self.queryset.filter(condition)
+        page = self.paginate_queryset(queries)
+        serializers = ProductResponseSerializer(instance=page, many=True)
+        return self.get_paginated_response(data=serializers.data)
+
+    @action(methods=["GET"], detail=False, name="get_product_suggest_for_user")
+    def get_product_suggest_for_user(self, request, *args, **kwargs):
+        # id category
+        url = f"https://tracking.loca.lt/event-tracking/get-popular-category-of-user"
+        queries = self.get_queryset()
+        # if request.user.is_anonymous:
+        page = self.paginate_queryset(queries)
+        serializers = ProductResponseSerializer(instance=page, many=True)
+        return self.get_paginated_response(data=serializers.data)
+        # else:
+        #     params = {"userId": request.user.id}
+        #     res = ""
+        #     res = requests.request("GET", url, params=params)
+        #     data = res.json()
+        #     count_max = 0
+        #     category = ""
+        #     for i in data:
+        #         if i["count"] > count_max:
+        #             count_max = i["count"]
+        #             category = i["value"]
+        #     filter_condition = Q(category__id="category")
+        #     queries_filter = queries.filter(filter_condition).order_by("-create_at")
+        #     page = self.paginate_queryset(queries_filter)
+        #     serializers = ProductResponseSerializer(instance=page, many=True)
+        #     return self.get_paginated_response(data=serializers.data)
 
     def create(self, request, *args, **kwargs):
         data = request.data
@@ -177,9 +181,8 @@ class ProductViewSet(BaseAdminModelView):
             'data': []
         })
 
+    # detail
     @action(methods=["GET"], detail=True, name="get_suggest_list_of_product")
     def get_suggest_list_of_product(self, request, pk, *args, **kwargs):
         data = ProductService().get_suggest_list(pk)
         return Response(data=data, status=status.HTTP_200_OK)
-
-
