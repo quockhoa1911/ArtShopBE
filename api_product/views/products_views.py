@@ -27,7 +27,8 @@ class ProductViewSet(BaseAdminModelView):
         "search_product": "anonymous,user",
         "get_suggest_list_of_product": "anonymous,user",
         "get_product_trending": "anonymous,user",
-        "get_product_suggest_for_user": "anonymous,user"
+        "get_product_suggest_for_user": "anonymous,user",
+        "detect_image": "anonymous,user"
     }
     queryset = Products.objects.all()
     serializer_class = ProductResponseSerializer
@@ -186,3 +187,17 @@ class ProductViewSet(BaseAdminModelView):
     def get_suggest_list_of_product(self, request, pk, *args, **kwargs):
         data = ProductService().get_suggest_list(pk)
         return Response(data=data, status=status.HTTP_200_OK)
+
+    @action(methods=['POST'], detail=False, name='detect_image')
+    def detect_image(self, request, *args, **kwargs):
+        files = request.FILES.getlist("files")
+        name_category = ""
+        id_category = ""
+        for file in files:
+            id, name = ProductService().detect_product(file)
+
+            id_category += "," + id.hex
+            name_category += "," + name
+        id_category = id_category[1:]
+        name_category = name_category[1:]
+        return Response(data={"id": id_category, "name": name_category}, status=status.HTTP_200_OK)

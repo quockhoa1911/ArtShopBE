@@ -2,7 +2,21 @@ from api_product.models import Products, Category
 from api_auth.models import Author, Expert
 from api_product.serializers import ProductResponseSerializer
 from api_base.utils import Utils
-from django.db.models import  Q
+from django.db.models import Q
+import tensorflow as tf
+import cv2
+import numpy as np
+from django.conf import settings
+
+model = None
+
+label_arts = {
+    "Tranh_chan_dung": 0,
+    "Tranh_phong_canh": 1,
+    "Tranh_dan_gian": 2,
+    "Tranh_truu_tuong": 3
+}
+list_art_sort = ["Tranh chân dung", "Tranh phong cảnh", "Tranh dân gian", "Tranh trừu tượng"]
 
 
 class ProductService:
@@ -64,4 +78,29 @@ class ProductService:
                 return product_serializer.data
         return []
 
+    @staticmethod
+    def normalize_data(list_data: list):
+        data_norm = [(x - min(list_data)) / (max(list_data) - min(list_data)) for x in list_data]
+        return data_norm
 
+    def detect_product(self, file):
+        global model
+        path = f"{settings.BASE_DIR}/../AI/models_9.h5"
+        np_array = np.frombuffer(file.read(), np.uint8)
+        image = cv2.imdecode(np_array, cv2.IMREAD_COLOR)
+        image = cv2.resize(image, (224, 224), interpolation=cv2.INTER_AREA)
+        image = np.array(image)
+
+        if model is None:
+            print("load model")
+            model = tf.keras.models.load_model(path)
+
+        y = model.predict(tf.expand_dims(image, axis=0))
+        y = y[0]
+        y = self.normalize_data(y)
+        max_data = max(y)
+        index = y.index(max_data)
+
+        print(y)
+        category = Category.objects.filter(name__icontains=list_art_sort[index]).first()
+        return category.id, category.name
