@@ -4,7 +4,7 @@ from api_product.serializers import ProductResponseSerializer
 from api_base.utils import Utils
 from django.db.models import Q
 import os
-os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
+os.environ["tf_gpu_allocator"]="cuda_malloc_async"
 import tensorflow as tf
 import cv2
 import numpy as np
