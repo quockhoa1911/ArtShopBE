@@ -5,7 +5,6 @@ from api_base.utils import Utils
 from django.db.models import Q
 import os
 import tensorflow as tf
-tf.config.experimental.set_memory_growth(tf.config.list_physical_devices('GPU')[0], True)
 import cv2
 import numpy as np
 from django.conf import settings
