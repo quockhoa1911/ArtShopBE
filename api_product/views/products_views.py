@@ -58,36 +58,38 @@ class ProductViewSet(BaseAdminModelView):
         condition = Q()
         for i in list_id_trending:
             condition |= Q(pk=i)
-        queries = self.queryset.filter(condition)
-        page = self.paginate_queryset(queries)
-        serializers = ProductResponseSerializer(instance=page, many=True)
-        return self.get_paginated_response(data=serializers.data)
+        products = self.queryset.filter(condition)
+        if products.exists():
+            many = True
+            if len(products) == 1:
+                many = False
+                products = products.first()
+            serializers = ProductResponseSerializer(instance=products, many=many)
+        return Response(data=serializers.data if products.exists() else [], status=status.HTTP_200_OK)
 
     @action(methods=["GET"], detail=False, name="get_product_suggest_for_user")
     def get_product_suggest_for_user(self, request, *args, **kwargs):
         # id category
-        url = f"https://tracking.loca.lt/event-tracking/get-popular-category-of-user"
+        condition = Q()
         queries = self.get_queryset()
-        # if request.user.is_anonymous:
-        page = self.paginate_queryset(queries)
-        serializers = ProductResponseSerializer(instance=page, many=True)
-        return self.get_paginated_response(data=serializers.data)
-        # else:
-        #     params = {"userId": request.user.id}
-        #     res = ""
-        #     res = requests.request("GET", url, params=params)
-        #     data = res.json()
-        #     count_max = 0
-        #     category = ""
-        #     for i in data:
-        #         if i["count"] > count_max:
-        #             count_max = i["count"]
-        #             category = i["value"]
-        #     filter_condition = Q(category__id="category")
-        #     queries_filter = queries.filter(filter_condition).order_by("-create_at")
-        #     page = self.paginate_queryset(queries_filter)
-        #     serializers = ProductResponseSerializer(instance=page, many=True)
-        #     return self.get_paginated_response(data=serializers.data)
+        if not request.user.is_anonymous:
+            url = f"https://tracking.loca.lt/event-tracking/get-popular-category-of-user"
+            params = {"userId": request.user.id}
+            # res = requests.request("GET", url, params=params)
+            # data = res.json()
+            data = []
+            if len(data) > 0:
+                max_count_item = max(data, key=lambda x: x["count"])
+                condition |= Q(category__id=max_count_item["category"])
+
+        products = queries.filter(condition).order_by("-create_at")[:8]
+        if products.exists():
+            many = True
+            if len(products) == 1:
+                many = False
+                products = products.first()
+            serializers = ProductResponseSerializer(instance=products, many=many)
+        return Response(data=serializers.data if products.exists() else [], status=status.HTTP_200_OK)
 
     def create(self, request, *args, **kwargs):
         data = request.data
@@ -163,7 +165,7 @@ class ProductViewSet(BaseAdminModelView):
 
     @action(methods=['GET'], detail=False, name='get_list_product_expire_auction')
     def get_list_product_expire_auction(self, request, *args, **kwargs):
-        date = datetime.now() + timedelta(days=2)
+        date = datetime.now() + timedelta(days=0)
         queries = self.get_queryset().filter(end_auction__lt=date.date())
         if queries.exists():
             page = self.paginate_queryset(queries)
