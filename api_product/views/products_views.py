@@ -52,12 +52,17 @@ class ProductViewSet(BaseAdminModelView):
     # main page
     @action(methods=["GET"], detail=False, name="get_product_trending")
     def get_product_trending(self, request, *args, **kwargs):
-        url = "https://tracking.loca.lt"
+        url = "https://tracking.loca.lt/event-tracking/get-popular-product/"
+
+        # res = requests.request("GET", url)
+        # data = res.json()
+        # data = data[:8]
+
         # call get id trending
-        list_id_trending = []
+        data = []
         condition = Q()
-        for i in list_id_trending:
-            condition |= Q(pk=i)
+        for item in data:
+            condition |= Q(pk=item["_id"])
         products = self.queryset.filter(condition)
         if products.exists():
             many = True
@@ -74,13 +79,16 @@ class ProductViewSet(BaseAdminModelView):
         queries = self.get_queryset()
         if not request.user.is_anonymous:
             url = f"https://tracking.loca.lt/event-tracking/get-popular-category-of-user"
-            params = {"userId": request.user.id}
+
+            # params = {"userId": request.user.id.hex}
+            # params = {"userId": "5aac87af-5ac6-42a1-9ea2-b51fbd133d3e"}
             # res = requests.request("GET", url, params=params)
             # data = res.json()
+
             data = []
             if len(data) > 0:
                 max_count_item = max(data, key=lambda x: x["count"])
-                condition |= Q(category__id=max_count_item["category"])
+                condition |= Q(category__name__icontains=max_count_item["value"])
 
         products = queries.filter(condition).order_by("-create_at")[:8]
         if products.exists():
