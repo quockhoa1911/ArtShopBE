@@ -49,7 +49,7 @@ class ProductService:
         return product
 
     def get_product_of_category(self, id_category):
-        product_queries = Products.objects.filter(category=id_category)
+        product_queries = Products.objects.filter(category=id_category).order_by("-create_at")[:8]
         if product_queries.exists():
             many = True
             if len(product_queries) == 1:
@@ -57,7 +57,7 @@ class ProductService:
                 many = False
             serializer = ProductResponseSerializer(instance=product_queries, many=many)
             return serializer.data
-        return None
+        return []
 
     def get_limit_object_category(self, model, filter_obj, limit):
         queries_set = model.objects.filter(category=filter_obj).order_by("-create_at")[:limit]

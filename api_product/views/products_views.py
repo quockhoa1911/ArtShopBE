@@ -47,7 +47,7 @@ class ProductViewSet(BaseAdminModelView):
     @action(methods=["GET"], detail=True, name="get_product_of_category")
     def get_product_of_category(self, request, pk, *args, **kwargs):
         data = ProductService().get_product_of_category(id_category=pk)
-        return Response(data=data if data is not None else [], status=status.HTTP_200_OK)
+        return Response(data=data, status=status.HTTP_200_OK)
 
     # main page
     @action(methods=["GET"], detail=False, name="get_product_trending")
