@@ -104,4 +104,4 @@ class ProductService:
 
         print(y)
         category = Category.objects.filter(name__icontains=list_art_sort[index]).first()
-        return (category.id, category.name) if category else ("", "Chưa tìm thấy thể loại phù hợp")
+        return category.id, category.name
