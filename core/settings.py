@@ -14,7 +14,7 @@ from pathlib import Path
 import os
 from dotenv import load_dotenv
 from datetime import timedelta
-import dj_database_url
+# import dj_database_url
 
 load_dotenv()
 
@@ -30,7 +30,10 @@ SECRET_KEY = os.getenv("secret_key")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = [
+    "https://art-shop-fe.vercel.app/",
+    "https://127.0.0.1/"
+]
 
 SECURE_SSL_REDIRECT = False
 SESSION_COOKIE_SECURE = False
@@ -97,20 +100,20 @@ WSGI_APPLICATION = 'core.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-#         'NAME': os.getenv("db_name"),
-#         'USER': os.getenv("username"),
-#         'PASSWORD': os.getenv("password"),
-#         'HOST': os.getenv("db_host"),
-#         'PORT': os.getenv("db_port"),
-#     }
-# }
-
 DATABASES = {
-    "default": dj_database_url.parse(os.getenv("DATABASE_URL"))
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': os.getenv("db_name"),
+        'USER': os.getenv("username"),
+        'PASSWORD': os.getenv("password"),
+        'HOST': os.getenv("db_host"),
+        'PORT': os.getenv("db_port"),
+    }
 }
+
+# DATABASES = {
+#     "default": dj_database_url.parse(os.getenv("DATABASE_URL"))
+# }
 
 # mail config
 EMAIL_ADDRESS = os.getenv('email_address')
