@@ -75,7 +75,7 @@ class ProductViewSet(BaseAdminModelView):
                 many = False
                 products = products.first()
             serializers = ProductResponseSerializer(instance=products, many=many)
-        return Response(data=serializers.data if products.exists() else {"data": []}, status=status.HTTP_200_OK)
+        return Response(data=serializers.data if products.exists() else [], status=status.HTTP_200_OK)
 
     @action(methods=["GET"], detail=False, name="get_product_suggest_for_user")
     def get_product_suggest_for_user(self, request, *args, **kwargs):
@@ -106,7 +106,7 @@ class ProductViewSet(BaseAdminModelView):
                 many = False
                 products = products.first()
             serializers = ProductResponseSerializer(instance=products, many=many)
-        return Response(data=serializers.data if products.exists() else {"data": []}, status=status.HTTP_200_OK)
+        return Response(data=serializers.data if products.exists() else [], status=status.HTTP_200_OK)
 
     def create(self, request, *args, **kwargs):
         data = request.data
