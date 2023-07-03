@@ -32,6 +32,10 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
+SECURE_SSL_REDIRECT = False
+SESSION_COOKIE_SECURE = False
+CSRF_COOKIE_SECURE = False
+
 EMAIL_DEFAULT = os.getenv("email_admin_default")
 PASSWORD_DEFAULT = os.getenv("password_admin_default")
 
