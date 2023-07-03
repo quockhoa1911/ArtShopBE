@@ -32,7 +32,8 @@ DEBUG = True
 
 ALLOWED_HOSTS = [
     "https://art-shop-fe.vercel.app/",
-    "https://127.0.0.1/"
+    "https://127.0.0.1/",
+    "34.198.71.168"
 ]
 
 SECURE_SSL_REDIRECT = False
