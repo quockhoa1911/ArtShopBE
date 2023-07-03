@@ -52,7 +52,7 @@ class ProductViewSet(BaseAdminModelView):
     # main page
     @action(methods=["GET"], detail=False, name="get_product_trending")
     def get_product_trending(self, request, *args, **kwargs):
-        url = "https://tracking.loca.lt/event-tracking/get-popular-product/"
+        url = "https://activity-tracking-art-shop.vercel.app/event-tracking/get-popular-product/"
         data = []
         try:
             res = requests.request("GET", url)
@@ -83,7 +83,7 @@ class ProductViewSet(BaseAdminModelView):
         condition = Q()
         queries = self.get_queryset()
         if not request.user.is_anonymous:
-            url = f"https://tracking.loca.lt/event-tracking/get-popular-category-of-user"
+            url = f"https://activity-tracking-art-shop.vercel.app/event-tracking/get-popular-category-of-user"
             data = []
             try:
                 params = {"userId": request.user.id.hex}
