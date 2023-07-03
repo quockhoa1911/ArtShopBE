@@ -57,9 +57,9 @@ class ProductViewSet(BaseAdminModelView):
         try:
             res = requests.request("GET", url)
             if res.status_code == 200:
-                print("call api tracking get popular product success !")
                 data = res.json()
                 data = data[:8]
+                print(f"call api tracking get popular product success : {data}")
         except Exception as e:
             print("Call api trending server tracking error")
         # call get id trending
@@ -89,8 +89,8 @@ class ProductViewSet(BaseAdminModelView):
                 params = {"userId": request.user.id.hex}
                 res = requests.request("GET", url, params=params)
                 if res.status_code == 200:
-                    print("call api tracking get popular category success !")
                     data = res.json()
+                    print(f"call api tracking get popular category success: {data}")
             except Exception as e:
                 print("Exception call api get product popular category of user ")
 
