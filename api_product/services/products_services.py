@@ -69,7 +69,7 @@ class ProductService:
         category = Category.objects.filter(product__id=pk)
         if category.exists():
             category = category.first()
-            products = Products.objects.filter(Q(category=category) & ~Q(pk=pk)).order_by("-create_at")[:5]
+            products = Products.objects.filter(Q(category=category) & ~Q(pk=pk)).order_by("-create_at")[:6]
             if products.exists():
                 many = True
                 if len(products) == 1:
