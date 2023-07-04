@@ -24,8 +24,7 @@ class UserModelViewSet(BaseAdminModelView):
     def list(self, request, *args, **kwargs):
         role = Role.objects.get(name="user")
         user = User.objects.filter(role=role)
-        if len(user) > 1:
-            many = True
+        many = True
         if len(user) == 1:
             many = False
             user = user.first()
