@@ -68,15 +68,15 @@ class ProductViewSet(BaseAdminModelView):
         for item in data:
             condition |= Q(name__icontains=item["_id"])
         products = self.queryset.filter(condition)
-        data = []
+        data_res = []
         if products.exists():
             many = True
             if len(products) == 1:
                 many = False
                 products = products.first()
             serializers = ProductResponseSerializer(instance=products, many=many)
-            data = serializers.data if many else [serializers.data]
-        return Response(data=data, status=status.HTTP_200_OK)
+            data_res = serializers.data if many else [serializers.data]
+        return Response(data=data_res, status=status.HTTP_200_OK)
 
     @action(methods=["GET"], detail=False, name="get_product_suggest_for_user")
     def get_product_suggest_for_user(self, request, *args, **kwargs):
@@ -101,15 +101,15 @@ class ProductViewSet(BaseAdminModelView):
                 condition |= Q(category__name__icontains=max_count_item["value"])
 
         products = queries.filter(condition).order_by("-create_at")[:8]
-        data = []
+        data_res = []
         if products.exists():
             many = True
             if len(products) == 1:
                 many = False
                 products = products.first()
             serializers = ProductResponseSerializer(instance=products, many=many)
-            data = serializers.data if many else [serializers.data]
-        return Response(data=data, status=status.HTTP_200_OK)
+            data_res = serializers.data if many else [serializers.data]
+        return Response(data=data_res, status=status.HTTP_200_OK)
 
     def create(self, request, *args, **kwargs):
         data = request.data
