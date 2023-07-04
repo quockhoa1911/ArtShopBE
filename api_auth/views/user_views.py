@@ -24,13 +24,16 @@ class UserModelViewSet(BaseAdminModelView):
     def list(self, request, *args, **kwargs):
         role = Role.objects.get(name="user")
         user = User.objects.filter(role=role)
-        many = True
-        if len(user) == 1:
-            many = False
-            user = user.first()
-        serializer = UserResponseSerializers(instance=user, many=many)
-        return Response(data=[serializer.data] if not many else serializer.data,
-                        status=status.HTTP_200_OK)
+        if user.exists():
+            many = True
+            if len(user) == 1:
+                many = False
+                user = user.first()
+            serializer = UserResponseSerializers(instance=user, many=many)
+            return Response(data=[serializer.data] if not many else serializer.data,
+                            status=status.HTTP_200_OK)
+        else:
+            return Response(data=[], status=status.HTTP_200_OK)
 
     def create(self, request, *args, **kwargs):
         data = request.data
