@@ -37,9 +37,10 @@ class ProductViewSet(BaseAdminModelView):
     def list(self, request, *args, **kwargs):
         search = request.GET.get("search", None)
         condition = Q()
+        date = datetime.now()
         if search:
             condition |= Q(name__icontains=search)
-        queries = self.get_queryset().filter(condition)
+        queries = self.get_queryset().filter(condition).filter(end_auction__gt=date.date())
         page = self.paginate_queryset(queries)
         serializers = ProductResponseSerializer(instance=page, many=True)
         return self.get_paginated_response(data=serializers.data)
