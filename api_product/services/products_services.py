@@ -56,7 +56,7 @@ class ProductService:
                 product_queries = product_queries.first()
                 many = False
             serializer = ProductResponseSerializer(instance=product_queries, many=many)
-            return serializer.data
+            return serializer.data if many else [serializer.data]
         return []
 
     def get_limit_object_category(self, model, filter_obj, limit):
