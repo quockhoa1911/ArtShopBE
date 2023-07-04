@@ -76,7 +76,7 @@ class ProductService:
                     many = False
                     products = products.first()
                 product_serializer = ProductResponseSerializer(instance=products, many=many)
-                return product_serializer.data
+                return product_serializer.data if many else [product_serializer.data]
         return []
 
     @staticmethod
