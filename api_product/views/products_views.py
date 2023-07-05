@@ -187,7 +187,7 @@ class ProductViewSet(BaseAdminModelView):
     @action(methods=['GET'], detail=False, name='get_list_product_expire_auction')
     def get_list_product_expire_auction(self, request, *args, **kwargs):
         date = datetime.now() + timedelta(days=0)
-        queries = self.get_queryset().filter(end_auction__lt=date.date())
+        queries = self.get_queryset().filter(end_auction__lt=date.date(), sold=False)
         if queries.exists():
             page = self.paginate_queryset(queries)
             if page is not None:
