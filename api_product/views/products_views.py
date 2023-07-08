@@ -242,10 +242,9 @@ class ProductViewSet(BaseAdminModelView):
                 condition)
 
             products = Products.objects.none()
-            list_product = []
+
             for i in queries:
-                list_product.append(i.product)
-            products = list(chain(products, list_product))
+                products |= i.product
 
             if products.exists():
                 many = True
