@@ -6,7 +6,7 @@ from api_product.serializers import ProductRequestSerializer, ProductResponseSer
 from api_product.services import ProductService
 from rest_framework.response import Response
 from rest_framework import status
-from api_product.models import Products, ImageProduct
+from api_product.models import Products, ImageProduct, AuctionProduct
 from rest_framework.decorators import action
 from api_base.services import BaseService
 from api_base.pagination import Base_CustomPagination
@@ -228,3 +228,21 @@ class ProductViewSet(BaseAdminModelView):
         id_category = id_category[1:]
         name_category = name_category[1:]
         return Response(data={"id": id_category, "name": name_category}, status=status.HTTP_200_OK)
+
+    @action(methods=["GET"], detail=False, name="get_list_product_sold_for_user")
+    def get_list_product_sold_for_user(self, request, *args, **kwargs):
+        data_res = []
+        if not request.user.is_anonymous:
+            search = request.GET.get("search", None)
+            condition = Q()
+            if search:
+                condition |= Q(product__name__icontains=search)
+            products = AuctionProduct.objects.filter(user=request.user, product__sold=True).filter(condition).values("product")
+            if products.exists():
+                many = True
+                if len(products) == 1:
+                    many = False
+                    products = products.first()
+                serializers = ProductResponseSerializer(instance=products, many=many)
+                data_res = serializers.data if many else [serializers.data]
+        return Response(data=data_res, status=status.HTTP_200_OK)
