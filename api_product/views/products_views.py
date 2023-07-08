@@ -238,8 +238,15 @@ class ProductViewSet(BaseAdminModelView):
             condition = Q()
             if search:
                 condition |= Q(product__name__icontains=search)
-            products = AuctionProduct.objects.filter(user=request.user, is_success=True, product__sold=True).filter(
-                condition).values("product")
+            queries = AuctionProduct.objects.filter(user=request.user, is_success=True, product__sold=True).filter(
+                condition)
+
+            products = Products.objects.none()
+            list_product = []
+            for i in queries:
+                list_product.append(i.product)
+            products = list(chain(products, list_product))
+
             if products.exists():
                 many = True
                 if len(products) == 1:
