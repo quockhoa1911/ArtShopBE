@@ -6,7 +6,7 @@ from api_product.serializers import ProductRequestSerializer, ProductResponseSer
 from api_product.services import ProductService
 from rest_framework.response import Response
 from rest_framework import status
-from api_product.models import Products, ImageProduct, AuctionProduct
+from api_product.models import Products, ImageProduct
 from rest_framework.decorators import action
 from api_base.services import BaseService
 from api_base.pagination import Base_CustomPagination
@@ -237,14 +237,10 @@ class ProductViewSet(BaseAdminModelView):
             search = request.GET.get("search", None)
             condition = Q()
             if search:
-                condition |= Q(product__name__icontains=search)
-            queries = AuctionProduct.objects.filter(user=request.user, is_success=True, product__sold=True).filter(
-                condition)
+                condition |= Q(name__icontains=search)
 
-            products = Products.objects.none()
+            products = self.get_queryset().filter(auctionproduct__user=request.user, auctionproduct__is_success=True, sold=True).filter(condition)
 
-            for i in queries:
-                products |= i.product
 
             if products.exists():
                 many = True
