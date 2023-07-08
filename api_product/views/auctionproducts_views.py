@@ -30,7 +30,7 @@ class AuctionProductViewSet(BaseAdminModelView):
 
     @action(methods=["GET"], detail=False, name="get_list_auction_of_user")
     def get_list_auction_of_user(self, request, *args, **kwargs):
-        queries = AuctionProduct.objects.filter(user=request.user).values("product").annotate(price_max=Max('auction_price')).order_by()
+        queries = AuctionProduct.objects.filter(user=request.user, product__sold=False).values("product").annotate(price_max=Max('auction_price')).order_by()
         list_product = []
         for query in queries:
             serializer = ProductResponseSerializer(instance=Products.objects.get(pk=query.get('product').hex), many=False)
