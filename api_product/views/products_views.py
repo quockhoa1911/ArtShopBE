@@ -31,7 +31,8 @@ class ProductViewSet(BaseAdminModelView):
         "get_product_trending": "anonymous,user",
         "get_product_suggest_for_user": "anonymous,user",
         "detect_image": "anonymous,user",
-        "get_list_product_sold_for_user": "user"
+        "get_list_product_sold_for_user": "user",
+        "test_send_mail": "anonymous"
     }
     queryset = Products.objects.all()
     serializer_class = ProductResponseSerializer
