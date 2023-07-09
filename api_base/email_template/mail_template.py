@@ -131,7 +131,7 @@ template = '''<!DOCTYPE html>
                 <table border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width: 600px;">
                     <tr>
                         <td bgcolor="#ffffff" align="left" style="padding: 20px 30px 40px 30px; color: #666666; font-family: 'Lato', Helvetica, Arial, sans-serif; font-size: 18px; font-weight: 400; line-height: 25px;">
-                            <p style="margin: 0;">We're excited to have you get started. First, you need to confirm your account. Just press the button below.</p>
+                            <p style="margin: 0;">We're excited to have you get started. First, you need to confirm with us. Just press the button below.</p>
                         </td>
                     </tr>
                     <tr>
@@ -166,7 +166,7 @@ template = '''<!DOCTYPE html>
                     </tr>
                     <tr>
                         <td bgcolor="#ffffff" align="left" style="padding: 0px 30px 40px 30px; border-radius: 0px 0px 4px 4px; color: #666666; font-family: 'Lato', Helvetica, Arial, sans-serif; font-size: 18px; font-weight: 400; line-height: 25px;">
-                            <p style="margin: 0;">Cheers,<br>BBB Team</p>
+                            <p style="margin: 0;">Cheers,<br>Art Team</p>
                         </td>
                     </tr>
                 </table>
