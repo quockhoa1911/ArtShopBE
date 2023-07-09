@@ -1,4 +1,4 @@
-from django.db.models import Max
+from django.db.models import Max, Q
 
 from api_base.views import BaseAdminModelView
 from api_product.services import AuctionProductService
@@ -30,7 +30,13 @@ class AuctionProductViewSet(BaseAdminModelView):
 
     @action(methods=["GET"], detail=False, name="get_list_auction_of_user")
     def get_list_auction_of_user(self, request, *args, **kwargs):
-        queries = AuctionProduct.objects.filter(user=request.user, product__sold=False).values("product").annotate(price_max=Max('auction_price')).order_by()
+        search = request.GET.get("search", None)
+
+        condition = Q()
+        if search:
+            condition |= Q(product__name__icontains=search)
+
+        queries = AuctionProduct.objects.filter(user=request.user, product__sold=False).filter(condition).values("product").annotate(price_max=Max('auction_price')).order_by()
         list_product = []
         for query in queries:
             serializer = ProductResponseSerializer(instance=Products.objects.get(pk=query.get('product').hex), many=False)
