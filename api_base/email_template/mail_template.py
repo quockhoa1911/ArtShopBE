@@ -141,7 +141,7 @@ template = '''<!DOCTYPE html>
                                     <td bgcolor="#ffffff" align="center" style="padding: 20px 30px 60px 30px;">
                                         <table border="0" cellspacing="0" cellpadding="0">
                                             <tr>
-                                                <td align="center" style="border-radius: 3px;" bgcolor="#CCE5FF"><a href="https://art-shop-fe.vercel.app" target="_blank" style="font-size: 20px; font-family: Helvetica, Arial, sans-serif; color: #ffffff; text-decoration: none; color: #ffffff; text-decoration: none; padding: 15px 25px; border-radius: 2px; border: 1px solid #CCE5FF; display: inline-block;">Visit our website</a></td>
+                                                <td align="center" style="border-radius: 3px;" bgcolor="#66B2FF"><a href="https://art-shop-fe.vercel.app" target="_blank" style="font-size: 20px; font-family: Helvetica, Arial, sans-serif; color: #ffffff; text-decoration: none; color: #ffffff; text-decoration: none; padding: 15px 25px; border-radius: 2px; border: 1px solid #CCE5FF; display: inline-block;">Visit our website</a></td>
                                             </tr>
                                         </table>
                                     </td>
