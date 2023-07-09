@@ -45,7 +45,7 @@ class AuctionProductViewSet(BaseAdminModelView):
 
     @action(methods=["GET"], detail=True, name="get_list_auction_of_art")
     def get_list_auction_of_art(self, request, pk, *args, **kwargs):
-        queries = AuctionProduct.objects.filter(product=pk)
+        queries = AuctionProduct.objects.filter(product=pk).order_by("-create_at")[:5]
         if queries.exists():
             many = True
             if len(queries) == 1:
