@@ -9,6 +9,8 @@ class AuctionProductService:
     def create(cls, request, data):
         auction_price = data["auction_price"]
         product = Products.objects.filter(pk=data["product_id"]).first()
+        if not request.user.is_active:
+            return {"message": "You cannot auction because you violate the policy of system, please contact to admin"}, False
         if float(auction_price) < float(product.price):
             return {"message": "The price auction must larger than starting price"}, False
         if product and float(auction_price) > float(product.auction_price) and float(auction_price) > float(
