@@ -14,6 +14,8 @@ from datetime import datetime, timedelta
 from django.db.models import Q
 from itertools import chain
 import requests
+from api_base.services import Send_Mail_Service, Multi_Thread
+from api_base.email_template import template
 
 
 # Create your views here.
@@ -239,8 +241,8 @@ class ProductViewSet(BaseAdminModelView):
             if search:
                 condition |= Q(name__icontains=search)
 
-            products = self.get_queryset().filter(auctionproduct__user=request.user, auctionproduct__is_success=True, sold=True).filter(condition)
-
+            products = self.get_queryset().filter(auctionproduct__user=request.user, auctionproduct__is_success=True,
+                                                  sold=True).filter(condition)
 
             if products.exists():
                 many = True
@@ -250,3 +252,14 @@ class ProductViewSet(BaseAdminModelView):
                 serializers = ProductResponseSerializer(instance=products, many=many)
                 data_res = serializers.data if many else [serializers.data]
         return Response(data=data_res, status=status.HTTP_200_OK)
+
+    @action(methods=["GET"], detail=False, name="test_send_mail")
+    def test_send_mail(self, request, *args, **kwargs):
+        email = request.GET.get("email")
+        string_html = template
+        multi_thread = Multi_Thread(html=string_html, target=Send_Mail_Service.send_mail,
+                                    content_main_body='Content_main_body', header='Auction success',
+                                    from_email='noreply@gmail.com',
+                                    to_emails=[email])
+        multi_thread.start()
+        return Response(data="send mail success", status=status.HTTP_200_OK)
