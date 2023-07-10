@@ -12,9 +12,9 @@ class UserServices:
             user = user.first()
 
             if not user.is_active:
-                raise exceptions.ParseError("You account temporary locked, please contact to admin of system")
+                raise exceptions.ParseError("Tài khoản của bạn tạm thời bị khoá, liên hệ với quản trị viên của hệ thống")
 
-            if not check_password(data['password'], user.password): raise Exception("Password is not correct!")
+            if not check_password(data['password'], user.password): raise exceptions.ParseError("Sai mật khẩu!")
 
             token = RefreshToken.for_user(user)
             token["email"] = user.email
@@ -30,7 +30,7 @@ class UserServices:
             }
             return data
         else:
-            raise exceptions.ParseError("Email is not correct")
+            raise exceptions.ParseError("Email không tồn tại !")
 
     def update_user(self, pk, data):
         User.objects.filter(pk=pk).update(**data, is_completed=True)
