@@ -8,10 +8,12 @@ class UserServices:
     @classmethod
     def login(cls, data):
         user = User.objects.filter(email=data['email'])
-        if not user.is_active:
-            raise exceptions.ParseError("You account temporary locked, please contact to admin of system")
         if user.exists():
             user = user.first()
+
+            if not user.is_active:
+                raise exceptions.ParseError("You account temporary locked, please contact to admin of system")
+
             if not check_password(data['password'], user.password): raise Exception("Password is not correct!")
 
             token = RefreshToken.for_user(user)
