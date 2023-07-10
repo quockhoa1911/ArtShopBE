@@ -1,13 +1,15 @@
 from api_auth.models import User
 from django.contrib.auth.hashers import check_password, make_password
 from rest_framework_simplejwt.tokens import RefreshToken
-
+from rest_framework import exceptions
 
 class UserServices:
 
     @classmethod
     def login(cls, data):
         user = User.objects.filter(email=data['email'])
+        if not user.is_active:
+            raise exceptions.ParseError("You account temporary locked, please contact to admin of system")
         if user.exists():
             user = user.first()
             if not check_password(data['password'], user.password): raise Exception("Password is not correct!")
@@ -26,7 +28,7 @@ class UserServices:
             }
             return data
         else:
-            raise Exception("Email is not correct")
+            raise exceptions.ParseError("Email is not correct")
 
     def update_user(self, pk, data):
         User.objects.filter(pk=pk).update(**data, is_completed=True)
